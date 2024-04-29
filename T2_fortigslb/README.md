@@ -1,29 +1,24 @@
-# Xpert Summit 2023
-# NetDevOps, protección avanzada API y disponibilidad global
+# Hands on Lab FortiWEB Cloud y FortiGSLB
+# Protección avanzada de portales WEB y APIs
 ## Objetivo del laboratorio
-El objetivo de este laboratorio es dar nociones sobre cómo desplegar una infraestructura relativamente compleja de hub y spoke en AWS. Además de dar idea de cómo poder operar un firewall Fortigate a través de su API. Durante el laboratorio te familizarás con el entorno Terraform y cómo lanzar y customizar los despliegues.
+El objetivo de este laboratorio es conocer y operar los servicios de Fortinet: FortiWEB Cloud y FortiGSLB. Principalmente nos centraremos en la publicación de 2 aplicaciones de forma segura a través de FortiWEB Cloud, un portal WEB y una API. En el proceso aprenderás a entrenar el modelo de Machine Learning (ML) de la API para conocer el esquema OpenAPI de la misma y a aplicar protección al portal WEB basado reglas TOP10 OWASP y otros ataques sofisticados.
 
-Además, configurarás una nueva aplicación dentro del servicio de protección WAAP FortiWEB Cloud y realizarás pruebas de RedTeam contra la aplicación y verás como protegerla mediante Machine Learning.  
+Por último, configuraras nuestro servicio de Global Service Load Balancing (GSLB) mediante DNS, FortiGSLB, para que los usuarios de la aplicación accedan a la misma siempre a su región más cercana. También darás de alta tu aplicación en el servicio DNS, para acceder a la misma de forma sencilla cuando la publiques a través de FortiWEB Cloud. 
 
-Por último, configurarás nuestro servicio de Global Service Load Balancing (GSLB) mediante DNS, FortiGSLB, para que los usuarios de la aplicación accedan a la misma siempre a su región más cercana. 
+El formato del laboratorio consiste en 2 entrenamientos diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
 
-El formato del laboratorio consiste en 4 entrenamientos diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
-
-http://xs23.xpertsummit-es.com
+http://fwb-fgslb-hol.fortinetdemos.es
 
 ## Indice de laboratorios a completar
-* T1_day0_IaC_vpc_fgt_server: despliegue del entorno AWS
-* T2_dayN_fgt_terraform: actualización de configuración del Fortigate mediante Terraform
-* T3_dayN_fortiweb: creación de una nueva aplicación y protección avanzada API
-* **T4_dayN_fortigslb**: añadiremos la aplicación a un servicio de balanceo global DNS
+* T1_fortiweb: protección WEB y protección avanzada de APIs
+* **T2_fortigslb**: añadiremos una entrada DNS para vuestras aplicaciones
 
-## Lab T4. Resumen puesta en marcha
+## Lab T2. Resumen puesta en marcha
 
 En este entrenamiento realizaremos lo siguiente:
-- **IMPORTANTE** se debe haber completado con éxito el laboratorio: T2
-- Añadir nuestro servidor al servicio GSLB ya configurado en FortiGLB.
-- Comprobación que el servicio añade a la resolución DNS de la aplicación nuestra IP.
-
+- **IMPORTANTE** se debe haber completado con éxito el laboratorio: T1
+- Dar de alta nuestra aplicación como server del servicio GSLB.
+- Añadir nueevo virtual server al servicio GSLB ya configurado en FortiGSLB.
 
 ## Diagram solution
 
@@ -43,8 +38,7 @@ En este entrenamiento realizaremos lo siguiente:
 ![image1-2.png](images/image1-2.png)
 
 ## 2. Acceso a la organización 
-- En la página de bienvenida solicitará acceder a una organización. Hemos creado una para este laboratorio: `xpersummit`
-- Desde el navegador de ficheros de la parte izquierda desplegando la carpeta correspondiente al T4
+- En la página de bienvenida solicitará acceder a una organización. Hemos creado una para este laboratorio: `HoL`
 
 ![image2-1.png](images/image2-1.png)
 
@@ -63,14 +57,13 @@ En este entrenamiento realizaremos lo siguiente:
 
 - Los campos necesarios a completar son los siguientes:
 
-  1. Name: `Owner` (Owner asignado para el laboratorio)
+  1. Name: `user_id` (Usuario asignado para el laboratorio, ejemplo: fortixpert1)
   2. Data Center: (escoge el correspondiente a tu región)
-  3. Address IPv4: (IP de **management** del fortigate desplegado en lab T1, consultar Terraform output) 
+  3. Address IPv4: (IP de **management** del fortigate, `fgt_url`) 
   4. Port: `8443` (puerto de gestión del fortigate)
   5. Type: `FortiGate`
   6. Sync Control: `Virtual Server`
-  7. Auth Tokent: (api_key de tu fortigate, desplegado en lab T1, consultar Terraform output)
-
+  7. Auth Tokent: (api_key de tu fortigate, `fgt_api_key`)
 
 ![image3-1-3.png](images/image3-1-3.png)
 
@@ -83,8 +76,8 @@ En este entrenamiento realizaremos lo siguiente:
 
 - Los datos que necesitamos completar son los siguientes:
 
-  1. Name: `Owner`-server (Owner asignado para el laboratorio)
-  2. IP Address: (IP **pública** del fortigate desplegado en lab T1, consultar Terraform output) 
+  1. Name: `user_id` (user_id asignado para el laboratorio)
+  2. IP Address: (IP **pública** del fortigate, `fgt_ip`) 
 
 ![image3-2-2.png](images/image3-2-2.png)
 
@@ -111,7 +104,7 @@ En este entrenamiento realizaremos lo siguiente:
 
 - Recuerda darle a `Save`
 
-Con estos pasos, nuestro servidor acaba de añadirse al pool `student-pool`. Este pool, es el que se ha configurado para la resolución de nombres del FQDN: `students.cloudlab.xpertsummit-es.com`, de forma que cuando se realizan consultas DNS a FortiGSLB, resolverá con las IPs del pool con orden dependiente de la region del cliente que realiza las consultas. Esto es así porque hemos configurado un servicio GSLB con balanceo tipo GEO. 
+Con estos pasos, nuestro servidor acaba de añadirse al pool `student-pool`. Este pool, es el que se ha configurado para la resolución de nombres del FQDN: `fortixpert.hol.fortinetdemo.es`, de forma que cuando se realizan consultas DNS a FortiGSLB, resolverá con las IPs del pool con orden dependiente de la region del cliente que realiza las consultas. Esto es así porque hemos configurado un servicio GSLB con balanceo tipo GEO. 
 
 Puedes consultar esta configuraicón desde el menú del izquierda en `GSLB Services`
 
@@ -124,9 +117,9 @@ Puedes consultar esta configuraicón desde el menú del izquierda en `GSLB Servi
 - Para lanzar la consulta directamente a FortiGSLB, es posible consultar directamente a nuestra instancia FortiGSLB por su IP anycast. 
 
 ```sh
-dig students.cloudlab.xpertsummit-es.com 
+dig fortixpert.hol.fortinetdemo.es
 
-dig @75.2.49.209 students.cloudlab.xpertsummit-es.com
+dig @75.2.49.209 fortixpert.hol.fortinetdemo.es
 ``````
 
 ![image5-1.png](images/image5-1.png)

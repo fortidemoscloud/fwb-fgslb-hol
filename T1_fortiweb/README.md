@@ -7,7 +7,7 @@ Por último, configuraras nuestro servicio de Global Service Load Balancing (GSL
 
 El formato del laboratorio consiste en 2 entrenamientos diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
 
-http://fwb-fgslb-hol.fortinetdemos.es
+http://fwb-fgslb-hol.fortinetdemo.es
 
 ## Indice de laboratorios a completar
 * **T1_fortiweb**: protección WEB y protección avanzada de APIs
@@ -56,7 +56,7 @@ En este punto crearemos las dos aplicaciones a publicar a través de FortiWEB Cl
 
 - Wizard step 1: Nombre de applicación y dominio
     * Web Application Name: `user_id`-dvwa (Usuario FortiCloud asignado, ejemplo: fortixpert0-dvwa)
-    * Domain Name: `user_id`-dvwa.hol.fortinetdemos.es (ejemplo: fortixpert0-dvwa.hol.fortinetdemos.es)
+    * Domain Name: `user_id`-dvwa.hol.fortinetdemo.es (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es)
 
 ![image2-3.png](images/image2-3.png)
 
@@ -122,14 +122,14 @@ Para que resulte más sencillo acceder a la nueva aplicación a través de Forti
 
 - La entrada CNAME corresponde al fqdn que has obtenido al dar de alta la aplicación en FortiWEB Cloud. 
     * Alias: `user_id`-dvwa (ejemplo: fortixpert0-dvwa)
-    * Target: `<FortiWEB Cloud FQDN>` (ejemplo: fortixpert0-dvwa.hol.fortinetdemos.es.P911111111.fortiwebcloud.net.)
+    * Target: `<FortiWEB Cloud FQDN>` (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es.P911111111.fortiwebcloud.net.)
 
 ![image2-13.png](images/image2-13.png)
 
 > [!WARNING]
 > Es importante que incluyas un "." al final de la entrada de Target 
 
-- Una vez creada la entrada, ya puedes comprobar como la resolución la nueva entrada, (ejemplo: fortixpert0-dvwa.hol.fortinetdemos.es), apunta al FQDN de la aplicación creada en FortiWEB Cloud. 
+- Una vez creada la entrada, ya puedes comprobar como la resolución la nueva entrada, (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWEB Cloud. 
 
 > [!TIP]
 > Si quieres recuperar la entrada de la aplicación en FortiWEB Cloud, puedes ir al menú "NETWORK > Endpoints". 
@@ -145,7 +145,7 @@ Para dar de alta la aplicación, seguirás los mismos pasos que en el punto ante
 Cosas que debes tener en cuenta:
 
 - Web Application Name: `user_id`-api (Usuario FortiCloud asignado, ejemplo: fortixpert0-api)
-- Domain Name: `user_id`-api.hol.fortinetdemos.es (ejemplo: fortixpert0-api.hol.fortinetdemos.es)
+- Domain Name: `user_id`-api.hol.fortinetdemo.es (ejemplo: fortixpert0-api.hol.fortinetdemo.es)
 
 - Template de protección a aplicar en FortiWEB Cloud: ***api-hol-template***
 
@@ -176,7 +176,7 @@ Seleccionar el template `api-hol-template` y revisar los profile de seguridad ap
 chmod +x fwb_training_get.sh
 chmod +x fwb_training_post.sh
 ```
-- Ejecutar los scripts: (debes introducir la URL de tu aplicación API en formato correcto, ejemplo: fortixpert0-api.hol.fortinetdemos.es)
+- Ejecutar los scripts: (debes introducir la URL de tu aplicación API en formato correcto, ejemplo: fortixpert0-api.hol.fortinetdemo.es)
 ```sh
 ./fwb_training_get.sh <URL de la API> 
 ```
@@ -186,7 +186,7 @@ chmod +x fwb_training_post.sh
 
 3.2.2 Comprobación de los patrones aprendidos
 
-**IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto**
+**IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto después**
 
 - Iremos a la sección API colection de la aplicación, en el menú de la izquierda `API PROTECTION > ML Based API Protection`
 
@@ -217,14 +217,14 @@ Por defecto, el esquema aprendido deja la protección en standby, de forma que l
 
 En este apartado vamos a comprobar, como de forma automática, FortiWEB Cloud puede proteger las llamadas a la API, en función a lo aprendido en los patrones de tráfico y al esquema Swagger que ha definido. 
 
-**IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto**
+**IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto después**
 
 En el punto 3.2.3, se ha modificado el comportamiento de protección frente a llamadas que no cumplan con el esquema. Comprobar este punto para esperar un comportamiento u otro en los siguientes test.
 
 3.3.1 Query Parameter Violation
 
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
     "status" JSON parameter is missing in the JSON request and is blocked by FortiWeb-Cloud. The expected result is a Request query validation failed status.
@@ -235,7 +235,7 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStat
     "status" URL query parameter is too long. The expected result, JSON parameter length violation.
 
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 3.3.3 URL Query Parameter Short
@@ -243,14 +243,14 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStat
     "status" URL query parameter is too short. The expected result is a parameter violation.
 
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 3.3.4 Cross Site Script in URL
 
     "status" URL query parameter will carry a Command Injection attack. The expected result is a known signature violation.
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStatus?status=<script>alert(123)</script>'  -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=<script>alert(123)</script>'  -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 3.3.5 Cross Site Script in Body
@@ -258,7 +258,7 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet/findByStat
     "status" JSON body will carry an XSS attack. The expected result, the attack is being blocked by Machine Learning.
 
 ```sh
-curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "FortiCamel", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "<script>alert(123)</script>"}'
+curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "FortiCamel", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "<script>alert(123)</script>"}'
 ```
 
 3.3.6 Zero Day Attacks
@@ -268,7 +268,7 @@ curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet' -H 'acce
     Cross Site Script in the Body
 
 ```sh
-curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemos.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "javascript:qxss(X160135492Y1_1Z);", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "available”}'
+curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "javascript:qxss(X160135492Y1_1Z);", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "available”}'
 ```
 
 ## Laboratorio completado
