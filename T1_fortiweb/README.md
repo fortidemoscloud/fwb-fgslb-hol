@@ -155,12 +155,17 @@ Cosas que debes tener en cuenta:
 ## 3. Ejercicios de Red-Team
 En este punto empezamos los ejercicios de Red-Team sobre las aplicaciones publicadas. 
 
-## 3.1. Ataques contra la aplicación DVWA
-
-### Injection atacks
+## Injection atacks
 
 Los ataques de inyección ocurren cuando un atacante envía ataques simples basados en texto que explotan la sintaxis del intérprete objetivo. Casi cualquier fuente de datos puede ser un vector de inyección, como variables de entorno, parámetros, servicios web externos e internos, y todo tipo de usuarios. Las fallas de inyección ocurren cuando una aplicación envía datos no confiables a un intérprete. Las fallas de inyección son muy comunes, especialmente en código heredado. A menudo se encuentran en consultas SQL, LDAP, Xpath o NoSQL; comandos del sistema operativo; analizadores XML, encabezados SMTP, argumentos de programa, etc. Las fallas de inyección son fáciles de descubrir al examinar el código, pero más difíciles de descubrir mediante pruebas. Los escáneres y los fuzzers pueden ayudar a los atacantes a encontrar fallas de inyección. La inyección puede provocar pérdida o corrupción de datos, falta de responsabilidad o denegación de acceso. La inyección a veces puede llevar a la toma completa del host. [OWASP A03_2021-Injection] (https://owasp.org/Top10/A03_2021-Injection/)
 
+## 3.1. Ataques contra la aplicación DVWA
+
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+
+> [!NOTE]
+> Si es la primera vez que accedes al portal: Username: "root" (con password en blanco)
+> Si ya has accedido y reseteado el acceso: Username: "root" Password "password"
 
 ### 3.1.1 SQL Injection attack (sitio desprotegido)
 
@@ -223,7 +228,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 ¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.3, pero activando el modo bloqueo en FortiWeb Cloud?
 
-### Cross-Site Scripting (XSS) attacks 
+## Cross-Site Scripting (XSS) attacks 
 
 Los ataques de Cross-Site Scripting (XSS) son un tipo de inyección en el cual se insertan scripts maliciosos en sitios web aparentemente benignos y de confianza. Los ataques XSS ocurren cuando un atacante utiliza una aplicación web para enviar código malicioso, generalmente en forma de script del lado del navegador, a un usuario final diferente. Las fallas que permiten que estos ataques tengan éxito son bastante comunes y pueden ocurrir en cualquier lugar donde una aplicación web permita la entrada de un usuario dentro de la salida que genera, sin validar ni codificarla.
 
