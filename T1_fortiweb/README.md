@@ -156,7 +156,99 @@ Cosas que debes tener en cuenta:
 En este punto crearemos las dos aplicaciones a publicar a través de FortiWEB Cloud.
 
 ## 3.1. Red-team sobre aplicación DVWA
-(A completar)
+
+### Injection atacks
+
+Los ataques de inyección ocurren cuando un atacante envía ataques simples basados en texto que explotan la sintaxis del intérprete objetivo. Casi cualquier fuente de datos puede ser un vector de inyección, como variables de entorno, parámetros, servicios web externos e internos, y todo tipo de usuarios. Las fallas de inyección ocurren cuando una aplicación envía datos no confiables a un intérprete. Las fallas de inyección son muy comunes, especialmente en código heredado. A menudo se encuentran en consultas SQL, LDAP, Xpath o NoSQL; comandos del sistema operativo; analizadores XML, encabezados SMTP, argumentos de programa, etc. Las fallas de inyección son fáciles de descubrir al examinar el código, pero más difíciles de descubrir mediante pruebas. Los escáneres y los fuzzers pueden ayudar a los atacantes a encontrar fallas de inyección. La inyección puede provocar pérdida o corrupción de datos, falta de responsabilidad o denegación de acceso. La inyección a veces puede llevar a la toma completa del host. [OWASP A03_2021-Injection] (https://owasp.org/Top10/A03_2021-Injection/)
+
+
+### 3.1.1 SQL Injection attack (sitio desprotegido)
+
+*** Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal ***
+
+DVWA tiene un módulo simple utilizado para demostrar ataques de inyección SQL que espera valores de user-id como enteros (por ejemplo, 1, 2, 3). La aplicación mostrará información sobre el usuario asociado con un user-ID dado. En el siguiente ejercicio, inyectaremos comandos SQL para acceder a las contraseñas asociadas con los nombres de usuario.
+
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+
+![image3-1-1-1.png](images/image3-1-1-1.png)
+![image3-1-1-2.png](images/image3-1-1-2.png)
+![image3-1-1-3.png](images/image3-1-1-3.png)
+
+- Introduce el siguiente texto en el campo USER ID: `% 'or '1'='1' -- ';`
+
+> [!NOTE]
+> En este escenario, estamos diciendo "mostrar todos los registros que sean falsos y todos los registros que sean verdaderos".
+> %’ - Probablemente no será igual a nada y será falso.
+> ‘1’=‘1’ - Es igual a verdadero, porque 1 siempre será igual a 1.
+
+![image3-1-1-4.png](images/image3-1-1-4.png)
+
+- Introduce el siguiente texto en el campo USER ID: `'or '1'='1' union select null, user() #'`
+
+![image3-1-1-5.png](images/image3-1-1-5.png)
+
+- Usa el siguiente comando para determinar el nombre de la base de datos: `%'or '1'='1' union select null, database() #'`
+
+![image3-1-1-6.png](images/image3-1-1-6.png)
+
+### 3.1.2 Injection atacks (sitio protegido)
+
+¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.1, pero activando el modo bloqueo en FortiWeb Cloud?
+
+### 3.1.3 Command Injection attack (sitio desprotegido)
+
+*** Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal ***
+
+DVWA tiene un módulo simple utilizado para demostrar ataques de inyección de comandos que espera que un usuario introduzca una dirección IP. La aplicación luego enviará un ping a la dirección IP proporcionada. En el siguiente ejercicio, inyectaremos comandos además de la dirección IP que espera el módulo.
+
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+
+![image3-1-3-1.png](images/image3-1-3-1.png)
+
+- Introduce el siguiente texto que va a permitir ejecutar un comando "pwd" y obtener información sobre el direcotrio donde esta la aplicación desplegada: `4.2.2.2; pwd`
+
+![image3-1-3-2.png](images/image3-1-3-2.png)
+
+- Pregunta:
+    - ¿sería posible ejecutar un comando como “nc” (netcat) y abrir una shell en el sistema?
+    - ¿sería posible consultar los metadatos de la instancia que este ejecutando el microservicio y obtener credenciales?
+
+<details>
+  <summary>Commandos:</summary>
+  127.0.0.1; curl http://169.254.169.254/latest/meta-data/identity-credentials/ec2/security-credentials/ec2-instance
+</details>
+
+
+### 3.1.4 Command Injection attack (sitio protegido)
+
+¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.3, pero activando el modo bloqueo en FortiWeb Cloud?
+
+### Cross-Site Scripting (XSS) attacks 
+
+Los ataques de Cross-Site Scripting (XSS) son un tipo de inyección en el cual se insertan scripts maliciosos en sitios web aparentemente benignos y de confianza. Los ataques XSS ocurren cuando un atacante utiliza una aplicación web para enviar código malicioso, generalmente en forma de script del lado del navegador, a un usuario final diferente. Las fallas que permiten que estos ataques tengan éxito son bastante comunes y pueden ocurrir en cualquier lugar donde una aplicación web permita la entrada de un usuario dentro de la salida que genera, sin validar ni codificarla.
+
+Un atacante puede usar XSS para enviar un script malicioso a un usuario desprevenido. El navegador del usuario final no tiene forma de saber que el script no debe ser confiable y ejecutará el script. Debido a que el navegador cree que el script proviene de una fuente confiable, el script malicioso puede acceder a cualquier cookie, token de sesión u otra información sensible retenida por el navegador y utilizada con ese sitio. Estos scripts incluso pueden reescribir el contenido de la página HTML.
+
+Si bien el objetivo de un ataque XSS siempre es ejecutar JavaScript malicioso en el navegador de la víctima, existen algunas formas fundamentalmente diferentes de lograr ese objetivo.
+
+Los ataques XSS a menudo se dividen en tres tipos: XSS Persistente: donde la cadena maliciosa proviene de la base de datos del sitio web. XSS Reflejado: donde la cadena maliciosa proviene de la solicitud del usuario. El sitio web luego incluye esta cadena maliciosa en la respuesta enviada de vuelta al usuario. XSS basado en DOM: donde la vulnerabilidad está en el código del lado del cliente en lugar del código del lado del servidor. El XSS basado en DOM es una variante tanto de XSS persistente como de XSS reflejado. En un ataque XSS basado en DOM, la cadena maliciosa no se analiza realmente hasta que se ejecuta el JavaScript legítimo del sitio web. (https://owasp.org/www-community/attacks/xss/) Aquí hay un excelente análisis sobre XSS: https://excess-xss.com/
+
+### 3.1.5 XSS attack (sitio desprotegido)
+
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+
+- Haz clic en la pestaña de seguridad de DVWA y asegúrate de que el nivel de seguridad esté configurado en Bajo.
+- Haz clic en la pestaña XSS (Reflejado) a la izquierda para lanzar el módulo.
+- Introduce un texto, ejemplo "john", para probar la funcionalidad del módulo.
+
+![image3-1-3-5.png](images/image3-1-3-5.png)
+
+- Vas a lanzar un XXS attach injectando el siguiente texto en el campo “what’s your name? “Field: `<script>alert(12345)</script>`
+
+### 3.1.6 XSS attack (sitio protegido)
+
+¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.5, pero activando el modo bloqueo en FortiWeb Cloud?
+
 
 ## 3.2. Entrenamiento del módelo ML de API
 El template de seguridad aplicado para vuestra aplicación API, lleva activado la protección de APIs mediante Machine Learning. Para que el modelo pueda aprender el patron de tráfico de la aplicación, vamos a forzar cierto tráfico mediante un par de script. Para revisar el template podeis hacerlo desde el menú de la izquierda `GLOBAL > templates`

@@ -5,7 +5,7 @@ El objetivo de este laboratorio es conocer y operar los servicios de Fortinet: F
 
 Por último, configuraras nuestro servicio de Global Service Load Balancing (GSLB) mediante DNS, FortiGSLB, para que los usuarios de la aplicación accedan a la misma siempre a su región más cercana. 
 
-El formato del laboratorio consiste en 2 entrenamientos diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
+El formato del laboratorio consiste en 2 laboratorios diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
 
 http://fwb-fgslb-hol.fortidemoscloud.com
 
