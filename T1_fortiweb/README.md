@@ -254,15 +254,61 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 ¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.5, pero activando el modo bloqueo en FortiWeb Cloud?
 
+> [!TIP]
+> Si has llegado a este punto del labaratorio,sin haber lanzado ningún ataque sobre tu aplicación, puedes hacerlo ahora intentando abrir estas URLs en tu navegador.
 
-## 3.2. Entrenamiento del módelo ML de API
-El template de seguridad aplicado para vuestra aplicación API, lleva activado la protección de APIs mediante Machine Learning. Para que el modelo pueda aprender el patron de tráfico de la aplicación, vamos a forzar cierto tráfico mediante un par de script. Para revisar el template podeis hacerlo desde el menú de la izquierda `GLOBAL > templates`
+<detail>
+<summary>URL:</summary>
+- SQL injection: http://fortixpert`X`.hol.fortinetdemos.es/?p=1 or 1=1
+- XSS: http://fortixpert`X`.hol.fortinetdemos.es/?p=<script>Alert("HACK")<\script>
+- Command Injection: http://fortixpert`X`.hol.fortinetdemos.es/?p=cmd.exe
+- Known Exploits: http://fortixpert`X`.hol.fortinetdemos.es/?wp-verify-link=test
+- Trojan: http://fortixpert`X`.hol.fortinetdemos.es/?act=encoder
+
+Donde fortixpert`X` corresponde a tu user_id del laboratorio.
+<detail>
+
+
+## 3.2 Observabilidad en FortiWEB
+Una de las caracteristicas principales de FortiWeb Cloud, es [Threats Analytics](https://docs.fortinet.com/document/fortiweb-cloud/24.2.0/user-guide/920966/threat-analytics), que utiliza algoritmos de aprendizaje automático para identificar patrones de ataque en todos los activos de tu aplicación y los agrupa en incidentes de seguridad, asignándoles una gravedad. Ayuda a distinguir las amenazas reales de las alertas informativas y los falsos positivos, permitiéndote concentrarte en las amenazas que son importantes.
+
+Principales ventajas:
+
+    - Simplifica la detección y respuesta a amenazas.
+    - Acelera la investigación de alertas de seguridad.
+    - Ayuda a los analistas a concentrarse en las amenazas más importantes.
+    - Proporciona sugerencias para fortalecer la seguridad basadas en hallazgos.
+    - Ingiere eventos de todos tus entornos de nube híbrida.
+    - Alivia la fatiga por alertas.
+
+El acceso a Threat Analytics se realiza a través del portal de FortiWeb-Cloud, donde encontrarás los registros de ataques.
 
 ![image3-2-1.png](images/image3-2-1.png)
 
+Chequea la IP desde la que se han lanzado los ataques.
+
+![image3-2-2.png](images/image3-2-2.png)
+
+### Afinamiento de falsos positivos
+Desde los logs de ataques, es posible crear excepciones de una manera sencilla.
+
+![image3-2-3.png](images/image3-2-3.png)
+
+Todas las excepciones configuradas se reflejan desde `SECURITY RULES > Known Attacks`. Si el log de la aplicación, al que estamos creando la excepción, tiene asigando un template, estas quedarán reflejadas en dicho template y será donde deberiamos resetearlas para volver para la configuración incial del mismo.
+
+También desde `FortiView` dentro de cada una de las aplicaciones, es posible encontrar información detallada sobre los ataques detectedados. 
+
+![image3-2-5.png](images/image3-2-5.png)
+
+
+## 3.3. Entrenamiento del módelo ML de API
+El template de seguridad aplicado para vuestra aplicación API, lleva activado la protección de APIs mediante Machine Learning. Para que el modelo pueda aprender el patron de tráfico de la aplicación, vamos a forzar cierto tráfico mediante un par de script. Para revisar el template podeis hacerlo desde el menú de la izquierda `GLOBAL > templates`
+
+![image3-3-0.png](images/image3-2-1.png)
+
 Seleccionar el template `api-hol-template` y revisar los profile de seguridad aplicados en el menú de la izquierda, en este caso el que aplica a este punto es el de `API PROTECTION > ML Based API Protection`
 
-3.2.1 Lanzar los scripts de entrenamiento y aprendizaje
+### 3.3.1 Lanzar los scripts de entrenamiento y aprendizaje
 
 - En la carpeta scripts de la guia del laboratorio, podrás encontrar script en bash o PowerShell.
 - Copia los scripts para ejecutarlos desde tu PC. (Si tieneas algún problema con esto, pregunta para que te demos acceso a un entorno linux).
@@ -281,36 +327,35 @@ chmod +x fwb_training_post.sh
 ./fwb_training_post.sh <URL de la API> 
 ```
 
-3.2.2 Comprobación de los patrones aprendidos
+### 3.3.2 Comprobación de los patrones aprendidos
 
 **IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto después**
 
 - Iremos a la sección API colection de la aplicación, en el menú de la izquierda `API PROTECTION > ML Based API Protection`
 
-![image3-2-1.png](images/image3-2-1.png)
+![image3-3-1.png](images/image3-3-1.png)
 
 - Cuando haya pasado un tiempo desde el lanzamiento de los scripts de entranmiento, que dependerá de la zona en la que se haya desplegado la aplicación, se presentarán los patrones de tráfico aprendidos por el modelo. 
 
-![image3-2-2.png](images/image3-2-2.png)
+![image3-3-2.png](images/image3-3-2.png)
 
 - Se puede consultar el esquema API aprendido, incluso lo podemos descargar si fuera necesario, cambiando la vista a `API View` en la parte de la derecha. 
 
-![image3-2-3.png](images/image3-2-3.png)
+![image3-3-3.png](images/image3-3-3.png)
 
-3.2.3 Aplicar bloqueo en las llamadas que no cumplan con el esquema
+### 3.3.3 Aplicar bloqueo en las llamadas que no cumplan con el esquema
 
 Por defecto, el esquema aprendido deja la protección en standby, de forma que las peticiones que no cumplan con dicho esquema, no son bloqueadas ni alertadas. Podemos cambiar este comportamiento en `Schema Protection`.
 
 - Dentro de `API Collection`, donde aparecen los modelos aprendidos de API Paths, podemos dar a editar el comportamiento de protección, dandole al boton de editar que aparece a la derecha en la columna Action. 
 
-![image3-3-1.png](images/image3-3-1.png)
+![image3-3-4.png](images/image3-3-4.png)
 
 - Dentro de la customización del API Path aprendido, entre otras cosas podemos modificar el comportamiento de protección, seleccionandolo en el desplegable de arriba a la derecha. 
 
-![image3-3-2.png](images/image3-3-2.png)
+![image3-3-5.png](images/image3-3-5.png)
 
-
-## 3.3. ReadTeam sobre la API
+## 3.4. Ataques sobre la API
 
 En este apartado vamos a comprobar, como de forma automática, FortiWEB Cloud puede proteger las llamadas a la API, en función a lo aprendido en los patrones de tráfico y al esquema Swagger que ha definido. 
 
@@ -318,7 +363,7 @@ En este apartado vamos a comprobar, como de forma automática, FortiWEB Cloud pu
 
 En el punto 3.2.3, se ha modificado el comportamiento de protección frente a llamadas que no cumplan con el esquema. Comprobar este punto para esperar un comportamiento u otro en los siguientes test.
 
-3.3.1 Query Parameter Violation
+### 3.4.1 Query Parameter Violation
 
 ```sh
 curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'
@@ -327,7 +372,7 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatu
     "status" JSON parameter is missing in the JSON request and is blocked by FortiWeb-Cloud. The expected result is a Request query validation failed status.
 
 
-3.3.2 URL Query Parameter Long
+### 3.4.2 URL Query Parameter Long
 
     "status" URL query parameter is too long. The expected result, JSON parameter length violation.
 
@@ -335,7 +380,7 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatu
 curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
-3.3.3 URL Query Parameter Short
+### 3.4.3 URL Query Parameter Short
 
     "status" URL query parameter is too short. The expected result is a parameter violation.
 
@@ -343,14 +388,14 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatu
 curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
-3.3.4 Cross Site Script in URL
+### 3.4.4 Cross Site Script in URL
 
     "status" URL query parameter will carry a Command Injection attack. The expected result is a known signature violation.
 ```sh
 curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=<script>alert(123)</script>'  -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
-3.3.5 Cross Site Script in Body
+### 3.4.5 Cross Site Script in Body
 
     "status" JSON body will carry an XSS attack. The expected result, the attack is being blocked by Machine Learning.
 
@@ -358,7 +403,7 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatu
 curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "FortiCamel", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "<script>alert(123)</script>"}'
 ```
 
-3.3.6 Zero Day Attacks
+### 3.4.6 Zero Day Attacks
 
     We will now use some sample Zero Day Attacks.
 
