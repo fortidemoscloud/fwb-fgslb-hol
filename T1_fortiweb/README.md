@@ -152,10 +152,10 @@ Cosas que debes tener en cuenta:
 - DNS Alias: `user_id`-api (ejemplo: fortixpert0-api)
 
 
-## 3. RED-TEAM
-En este punto crearemos las dos aplicaciones a publicar a través de FortiWEB Cloud.
+## 3. Ejercicios de Red-Team
+En este punto empezamos los ejercicios de Red-Team sobre las aplicaciones publicadas. 
 
-## 3.1. Red-team sobre aplicación DVWA
+## 3.1. Ataques contra la aplicación DVWA
 
 ### Injection atacks
 
