@@ -24,7 +24,6 @@ En este entrenamiento realizaremos lo siguiente:
 
 ![architecture overview](images/image0.png)
 
-
 # LAB
 ## Pasos a seguir:
 
@@ -112,7 +111,7 @@ Puedes consultar esta configuraicón desde el menú del izquierda en `GSLB Servi
 
 ## 5. Comprobar resolución DNS
 
-- Desde la consola de Cloud9 o desde vuestro PC podeis lanzar una consulta DNS para el FQDN `students.cloudlab.xpersummit-es.com` para comprobar las IPs resueltas. 
+- Se puede lanzar la consulta DNS para el FQDN `fortixpert.hol.fortinetdemo.es` para comprobar las IPs resueltas. 
 
 - Para lanzar la consulta directamente a FortiGSLB, es posible consultar directamente a nuestra instancia FortiGSLB por su IP anycast. 
 
@@ -126,10 +125,7 @@ dig @75.2.49.209 fortixpert.hol.fortinetdemo.es
 
 ## Laboratorio completado
 
-## Support
+# Support
 This a personal repository with goal of testing and demo Fortinet solutions on the Cloud. No support is provided and must be used by your own responsability. Cloud Providers will charge for this deployments, please take it in count before proceed.
-
-## License
-Based on Fortinet repositories with original [License](https://github.com/fortinet/fortigate-terraform-deploy/blob/master/LICENSE) © Fortinet Technologies. All rights reserved.
 
 
