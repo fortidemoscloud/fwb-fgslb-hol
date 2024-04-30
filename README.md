@@ -7,7 +7,7 @@ Por último, configuraras nuestro servicio de Global Service Load Balancing (GSL
 
 El formato del laboratorio consiste en 2 laboratorios diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
 
-http://fwb-fgslb-hol.fortidemoscloud.com
+https://workshop.fortinetdemo.es
 
 ## Indice de laboratorios a completar
 * T1_fortiweb: protección WEB y protección avanzada de APIs
