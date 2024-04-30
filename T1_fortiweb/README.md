@@ -164,7 +164,7 @@ Los ataques de inyección ocurren cuando un atacante envía ataques simples basa
 
 ### 3.1.1 SQL Injection attack (sitio desprotegido)
 
-*** Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal ***
+**Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal**
 
 DVWA tiene un módulo simple utilizado para demostrar ataques de inyección SQL que espera valores de user-id como enteros (por ejemplo, 1, 2, 3). La aplicación mostrará información sobre el usuario asociado con un user-ID dado. En el siguiente ejercicio, inyectaremos comandos SQL para acceder a las contraseñas asociadas con los nombres de usuario.
 
@@ -197,7 +197,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 ### 3.1.3 Command Injection attack (sitio desprotegido)
 
-*** Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal ***
+**Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal**
 
 DVWA tiene un módulo simple utilizado para demostrar ataques de inyección de comandos que espera que un usuario introduzca una dirección IP. La aplicación luego enviará un ping a la dirección IP proporcionada. En el siguiente ejercicio, inyectaremos comandos además de la dirección IP que espera el módulo.
 
