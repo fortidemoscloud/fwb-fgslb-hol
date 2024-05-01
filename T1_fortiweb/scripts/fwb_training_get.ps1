@@ -17,10 +17,10 @@ function Check-InputPattern {
     param (
         [string]$URL
     )
-    $pattern1 = "fortixpert[1-9]-api\.hol\.fortidemoscloud\.es"
-    $pattern2 = "fortixpert[1-9][0-9]-api\.hol\.fortidemoscloud\.es"
+    $pattern1 = "fortixpert[1-9]-api\.hol\.fortinetdemo\.es"
+    $pattern2 = "fortixpert[1-9][0-9]-api\.hol\.fortinetdemo\.es"
     if ($URL -notmatch $pattern1 -and $URL -notmatch $pattern2) {
-        Write-Host "la URL no cumple con el formato esperado."
+        Write-Host "la URL no cumple con el formato correcto."
         exit 1
     }
 }
