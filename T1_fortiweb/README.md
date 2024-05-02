@@ -267,6 +267,10 @@ Chequea la IP desde la que se han lanzado los ataques.
 
 ![image3-2-2.png](images/image3-2-2.png)
 
+También desde `FortiView` dentro de cada una de las aplicaciones, es posible encontrar información detallada sobre los ataques detectados. 
+
+![image3-2-5.png](images/image3-2-5.png)
+
 ### Afinamiento de falsos positivos
 
 Desde los logs de ataques, es posible crear excepciones de una manera sencilla.
@@ -275,44 +279,35 @@ Desde los logs de ataques, es posible crear excepciones de una manera sencilla.
 
 Todas las excepciones configuradas se reflejan desde `SECURITY RULES > Known Attacks`. Si el log de la aplicación, al que estamos creando la excepción, tiene asigando un template, estas quedarán reflejadas en dicho template y será donde deberiamos resetearlas para volver para la configuración inicial del mismo.
 
-También desde `FortiView` dentro de cada una de las aplicaciones, es posible encontrar información detallada sobre los ataques detectados. 
-
-![image3-2-5.png](images/image3-2-5.png)
-
 ### 3 Creación de aplicación API (Swagger Pet Store)
 
-- Comprueba que tu aplicación es accesible desde Internet, puedes encontrar la url a la misma en los datos del laboratorio: Acceso a tus aplicaciones > api_url
+- Comprueba que tu aplicación es accesible desde Internet, puedes encontrar la URL a la misma en los datos del laboratorio: Acceso a tus aplicaciones > api_url
 
-Para dar de alta la aplicación, seguirás los mismos pasos que en el punto anterior. 
+Para dar de alta la aplicación, seguirás los mismos pasos que en el punto anterior para el portal Web DVWA. 
 
 ***Repetir los mismos pasos que en el punto 2.1 con las variaciones indicadas a continuación***
 
 Cosas que debes tener en cuenta:
 
-- Web Application Name: `user_id`-api (Usuario FortiCloud asignado, ejemplo: fortixpert0-api)
-- Domain Name: `user_id`-api.hol.fortinetdemo.es (ejemplo: fortixpert0-api.hol.fortinetdemo.es)
+- Web Application Name: `user_id`-api (Usuario FortiCloud asignado, ejemplo: _fortixpert0-api_)
+- Domain Name: `user_id`-api.hol.fortinetdemo.es (ejemplo: _fortixpert0-api.hol.fortinetdemo.es_)
 
 - Template de protección a aplicar en FortiWEB Cloud: ***api-hol-template***
 
-- DNS Alias: `user_id`-api (ejemplo: fortixpert0-api)
+- DNS Alias: `user_id`-api (ejemplo: _fortixpert0-api_)
 
 ### 3.1. Creación de nuevo CNAME para aplicación DVWA
 
 Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Cloud, vamos a añadir un nuevo CNAME en la zona DNS reservada para el workshop, que resuelva al FQDN proporciando por FortiWeb Cloud para nuestra aplicación. Para ello vamos a usar FortiGSLB como servidor DNS del dominio hol.fortinetdemo.es
 
 - Con el mismo IAM user con el que hemos accedido a FortiWeb Cloud es posible acceder al servicio SaaS de FortiGSLB en la url [FortiGSLB](http://www.fortigslb.com/)
-
-![image1-2.png](images/image1-2.png)
-
-**Recuerda: acceso del tipo IAM login**
-
 - Selecciona la organización HoL.
 
-![image2-9.png](images/image2-9.png)
+<p align="center"><img src="images/image2-9.png" width="80%"></p>
 
 - Selecciona "DNS Services" en el menú de la izquierda, donde aparecen las zonas DNS relacionadas con esta organización.
 
-![image2-10.png](images/image2-10.png)
+<p align="center"><img src="images/image2-10.png" width="50%"></p>
 
 - Selecciona la entrada "HoL" y editala para añadir una nueva entrada, bóton lapiz que encontrarás a la derecha. 
 
@@ -324,10 +319,10 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 
 - La entrada CNAME corresponde al FQDN que has obtenido al dar de alta la aplicación en FortiWeb Cloud.
   
-    * Alias: `user_id`-api (ejemplo: fortixpert0-dvwa)
+    * Alias: `user_id`-api (ejemplo: fortixpert0-api)
     * Target: `<FortiWeb Cloud FQDN>` (ejemplo: fortixpert0-api.hol.fortinetdemo.es.P911111111.fortiwebcloud.net.)
 
-![image2-13.png](images/image2-13.png)
+<p align="center"><img src="images/image2-13.png" width="50%"></p>
 
 > [!WARNING]
 > Es importante que incluyas un "." al final de la entrada de Target
@@ -335,7 +330,8 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 > [!WARNING]
 > Es un entorno compartido, por favor no modifiques nada que no sea lo indicado en la guía o podrás afectar al resto de usuarios
 
-- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada, (ejemplo: fortixpert0-api.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWeb Cloud. 
+- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada _(ejemplo: fortixpert0-api.hol.fortinetdemo.es)_, apunta al FQDN de la aplicación creada en FortiWeb Cloud.
+- En este punto podrás comprobar al acceder a la aplicación a través de HTTPS como FortiWeb ha desplegado el certificado requerido para securizar la comunicación con la aplicación. Inicialmente se instala un certificado propio de FortiWeb y en cuestión de minutos se podrá comprobar como se despliega el certificado de Let's Encrypt de forma automatizada
 
 > [!TIP]
 > Si no has copiado el CNAME que ha generado FortiWeb para la aplicación puedes ir al menú "NETWORK > Endpoints" y recuperarlo.
@@ -351,7 +347,7 @@ Seleccionar el template `api-hol-template` y revisar los profile de seguridad ap
 ### 3.2.1 Lanzar los scripts de entrenamiento y aprendizaje
 
 - En la carpeta scripts de la guía del laboratorio, podrás encontrar script en bash o PowerShell para poder ser ejecutos en entornos Windows o Mac/Linux.
-- Copia los scripts para ejecutarlos desde tu PC. (Si tienes algún problema con esto, pregunta para que te demos acceso a un entorno linux).
+- Copia los scripts para ejecutarlos desde tu PC. (Si tienes algún problema con esto puedes usar el servidor de pruebas habilitado, pregunta para que te demos acceso a un entorno Linux).
 - Debes copiar dos scripts, que serán los que lancen las simulaciones del entrenamiento via GET y POST. 
 
 - Añade los permisos de ejecución a los scripts a ejecutar (caso de MAC o Linux):
@@ -377,11 +373,11 @@ chmod +x fwb_training_post.sh
 
 - Cuando haya pasado un tiempo desde el lanzamiento de los scripts de entrenamiento se presentarán los patrones de tráfico aprendidos por el modelo. 
 
-![image3-3-2.png](images/image3-3-2.png)
+![img3-2-2.png](images/img3-2-2.png)
 
 - Se puede consultar el esquema API aprendido, incluso lo podemos descargar si fuera necesario, cambiando la vista a `API View` en la parte de la derecha. 
 
-![image3-3-3.png](images/image3-3-3.png)
+![img3-2-3.png](images/img3-2-3.png)
 
 ### 3.2.3 Aplicar bloqueo en las llamadas que no cumplan con el esquema
 
@@ -389,11 +385,11 @@ Por defecto, el esquema aprendido deja la protección en standby, de forma que l
 
 - Dentro de `API Collection`, donde aparecen los modelos aprendidos de API Paths, podemos dar a editar el comportamiento de protección, dandole al boton de editar que aparece a la derecha en la columna Action. 
 
-![image3-3-4.png](images/image3-3-4.png)
+![img3-2-4.png](images/img3-2-4.png)
 
 - Dentro de la customización del API Path aprendido, entre otras cosas podemos modificar el comportamiento de protección, seleccionandolo en el desplegable de arriba a la derecha. 
 
-![image3-3-5.png](images/image3-3-5.png)
+![img3-2-5.png](images/img3-2-5.png)
 
 ## 3.2.4 Ataques sobre la API
 
