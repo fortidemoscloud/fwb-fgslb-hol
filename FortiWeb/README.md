@@ -12,7 +12,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 ## 1. Conexión al servicio de FortiWeb Cloud
 
 - Para acceder al servicio de FortiWeb Cloud se ha habilitado un acceso IAM donde cada usuario tendrá sus propias credenciales de acceso bajo una cuenta matriz donde se encuentra el servicio
-- El acceso a FortiWeb Cloud puede llevarse a cabo desde la siguiente URL: [FortiWEB Cloud](http://www.fortiweb-cloud.com/)
+- El acceso a FortiWeb Cloud puede llevarse a cabo desde la siguiente URL: [FortiWeb Cloud](http://www.fortiweb-cloud.com/)
 - Seleccionamos la opción Login
 
 ![image1-3.png](images/image1-3.png)
@@ -71,8 +71,8 @@ Puedes obtener la IP pública de tu aplicación DVWA en los datos de laboratorio
 
 - Completado:
   
-    * El resultado es un nuevo FQDN que genera el servicio de FortiWeb Cloud de nuestra applicación para acceder a través de FortiWEB Cloud y poder actualizar nuestros servidores DNS.
-    * Desde el nuevo FQDN fqdn podremos acceder a nuestra aplicación a través de FortiWEB Cloud.
+    * El resultado es un nuevo FQDN que genera el servicio de FortiWeb Cloud para acceder a nuestra aplicación de forma segura a través del scrubbing center correspondiente simplemente redirigiendo el tráfico a nivel DNS.
+    * Desde el nuevo FQDN podremos acceder a nuestra aplicación a través de FortiWeb Cloud.
 
 > [!TIP]
 Copiar el nuevo FQDN para utilizar en el siguiente punto donde modificaremos los registros DNS de nuestro dominio
@@ -244,7 +244,7 @@ URL:
 
 Donde _fortixpert#_ corresponde a tu 'user_id' del laboratorio.
 
-## 2.3 Observabilidad en FortiWEB
+## 2.3 Observabilidad en FortiWeb
 
 Una de las caracteristicas principales de FortiWeb Cloud, es [Threats Analytics](https://docs.fortinet.com/document/fortiweb-cloud/24.2.0/user-guide/920966/threat-analytics), que utiliza algoritmos de aprendizaje automático para identificar patrones de ataque en todos los activos de tu aplicación y los agrupa en incidentes de seguridad, asignándoles una gravedad. Ayuda a distinguir las amenazas reales de las alertas informativas y los falsos positivos, permitiéndote concentrarte en las amenazas que son importantes.
 
@@ -290,7 +290,7 @@ Cosas que debes tener en cuenta:
 - Web Application Name: `user_id`-api (Usuario FortiCloud asignado, ejemplo: _fortixpert0-api_)
 - Domain Name: `user_id`-api.hol.fortinetdemo.es (ejemplo: _fortixpert0-api.hol.fortinetdemo.es_)
 
-- Template de protección a aplicar en FortiWEB Cloud: ***api-hol-template***
+- Template de protección a aplicar en FortiWeb Cloud: ***api-hol-template***
 
 - DNS Alias: `user_id`-api (ejemplo: _fortixpert0-api_)
 
