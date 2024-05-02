@@ -340,7 +340,7 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 
 El template de seguridad aplicado para la aplicación API, lleva activada la protección de APIs mediante Machine Learning. Para que el modelo pueda aprender el patrón de tráfico de la aplicación, vamos a forzar cierto tráfico mediante un par de scripts que permiten simular lo que sería un uso normal de la API. Para revisar el template podeis hacerlo desde el menú de la izquierda `GLOBAL > Templates`
 
-![image3-3-0.png](images/image3-2-1.png)
+![img-3-2-0.png](images/img-3-2-0.png)
 
 Seleccionar el template `api-hol-template` y revisar los profile de seguridad aplicados en el menú de la izquierda, en este caso el que aplica a este punto es el de `API PROTECTION > ML Based API Protection`
 
@@ -373,11 +373,11 @@ chmod +x fwb_training_post.sh
 
 - Cuando haya pasado un tiempo desde el lanzamiento de los scripts de entrenamiento se presentarán los patrones de tráfico aprendidos por el modelo. 
 
-![img3-2-2.png](images/img3-2-2.png)
+![img-3-2-2.png](images/img3-2-2.png)
 
 - Se puede consultar el esquema API aprendido, incluso lo podemos descargar si fuera necesario, cambiando la vista a `API View` en la parte de la derecha. 
 
-![img3-2-3.png](images/img3-2-3.png)
+![img-3-2-3.png](images/img3-2-3.png)
 
 ### 3.2.3 Aplicar bloqueo en las llamadas que no cumplan con el esquema
 
@@ -385,11 +385,11 @@ Por defecto, el esquema aprendido deja la protección en standby, de forma que l
 
 - Dentro de `API Collection`, donde aparecen los modelos aprendidos de API Paths, podemos dar a editar el comportamiento de protección, dandole al boton de editar que aparece a la derecha en la columna Action. 
 
-![img3-2-4.png](images/img3-2-4.png)
+![img-3-2-4.png](images/img3-2-4.png)
 
 - Dentro de la customización del API Path aprendido, entre otras cosas podemos modificar el comportamiento de protección, seleccionandolo en el desplegable de arriba a la derecha. 
 
-![img3-2-5.png](images/img3-2-5.png)
+![img-3-2-5.png](images/img3-2-5.png)
 
 ## 3.2.4 Ataques sobre la API
 
