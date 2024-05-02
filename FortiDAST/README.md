@@ -80,5 +80,19 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 ![img1-13.png](images/img1-13.png)
 
 - En las diferentes vistas podemos ver los diferentes descubrimientos por nivel de criticidad (CVSS), Categoría OWASP o SANS, Tecnologías descubiertas,...
+- Una vez concluido el análisis podremos ver el Threat Score que nos asigna la herramienta de forma sencilla
+
+![img1-16.png](images/img1-16.png)
+
+- También es posible generar un completo informe con los resultados en formato PDF
+- 
+![img1-17.png](images/img1-17.png)
+
+- La integración con FortiWeb facilita dichos resultados directamente sobre la propia interfaz de FortiWeb Cloud tanto a nivel de Threat Score como de acceso directo a los resultados
+
+![img1-18.png](images/img1-18.png)
+
+- Con esto concluye este laboratorio de FortiDAST y con él el workshop de Seguridad para aplicaciones web y API
+
 
 
