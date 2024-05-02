@@ -226,19 +226,6 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 ¿Qué pasa si vuelves a lanzar los mismos ataques pero activando el modo bloqueo en FortiWeb Cloud?
 
-> [!TIP]
-> Si has llegado a este punto del laboratorio,sin haber lanzado ningún ataque sobre tu aplicación, puedes hacerlo ahora intentando abrir estas URLs en tu navegador.
-
-URL:
-
-- SQL injection: <a href="http://fortixpert#-dvwa.hol.fortinetdemo.es/?p=1%20or%201=1">http://fortixpert#.hol.fortinetdemo.es/?p=1 or 1=1</a>
-- XSS: <a href="http://fortixpert40-dvwa.hol.fortinetdemo.es/?p=<script>Alert('HACK')<\script>">XSS</a>
-- Command Injection: http://fortixpert#.hol.fortinetdemo.es/?p=cmd.exe
-- Known Exploits: http://fortixpert#.hol.fortinetdemo.es/?wp-verify-link=test
-- Trojan: http://fortixpert#.hol.fortinetdemo.es/?act=encoder
-
-Donde _fortixpert#_ corresponde a tu 'user_id' del laboratorio.
-
 ## 2.3 Observabilidad en FortiWeb
 
 Una de las caracteristicas principales de FortiWeb Cloud, es [Threats Analytics](https://docs.fortinet.com/document/fortiweb-cloud/24.2.0/user-guide/920966/threat-analytics), que utiliza algoritmos de aprendizaje automático para identificar patrones de ataque en todos los activos de tu aplicación y los agrupa en incidentes de seguridad, asignándoles una gravedad. Ayuda a distinguir las amenazas reales de las alertas informativas y los falsos positivos, permitiéndote concentrarte en las amenazas que son importantes.
