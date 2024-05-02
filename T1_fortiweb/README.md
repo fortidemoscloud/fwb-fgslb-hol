@@ -1,22 +1,3 @@
-# Hands on Lab Seguridad Aplicaciones Web & API
-## Objetivo del laboratorio
-El objetivo de este laboratorio es conocer la propuesta de valor de Fortinet para proteger aplicaciones web y APIs a través de sus soluciones de FortiWeb Cloud, FortiDAST y FortiGSLB. Durante el workshop se publicarán 2 aplicaciones de forma segura a través de FortiWeb Cloud simulando un entorno corporativo, con un portal web y una API. En el proceso aprenderás a entrenar el modelo de Machine Learning (ML) de la API para conocer el esquema OpenAPI de la misma y aplicar mecanismos de protección sobre el mismo y también cómo proteger portales web frente a ataques TOP10 OWASP y otros ataques sofisticados.
-
-Al margen de ello podremos comprobar el valor añadido que puede aportar nuestro servicio FortiDAST para evaluar de forma continua la postura de seguridad de nuestras aplicaciones y APIs y como nuestro servicio de Global Service Load Balancing (GSLB) mediante DNS, FortiGSLB, puede facilitar una publicación más eficiente de la aplicación en entornos distribuidos facilitando siempre el mejor acceso en base a la ubicación del usuario o a los health checks definidos para cada aplicación. 
-
-El formato del laboratorio consiste en 3 laboratorios diferenciados cuyos datos de acceso se pueden encontrar en la siguiente URL introduciendo el token que se habrá facilitado previamente a cada asistente.
-
-https://workshop.fortinetdemo.es
-
-Una vez dentro del portal para conocer el detalle del entorno de cada usuario se debe consultar el fichero Credenciales_Acceso.xlsx disponible en este enlace y cuya contraseña es la misma que el token facilitado:
-
-[Credenciales_acceso](https://drive.google.com/file/d/1mDOx0rxCCXkXzKrHJvAoF-t-Smxg2f-2/view?usp=sharing)
-
-## Indice de laboratorios a completar
-* **T1_fortiweb**: protección WEB y protección avanzada de APIs
-* T2_FortiDAST: comprobaremos de forma dinámica la seguridad de nuestras aplicaciones web
-* T3_FortiGSLB: añadiremos una entrada DNS para las aplicaciones
-
 ## T1: [T1_fortiweb](./T1_fortiweb)
 
 En este laboratorio llevaremos a cabo las siguientes tareas:
