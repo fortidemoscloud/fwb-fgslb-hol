@@ -22,7 +22,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 <p align="center"><img src="images/image1-2-2.png" width="50%" align="center"></p>
 <p align="center"><img src="images/image1-1.png" width="60%" align="center"></p>
 
-En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales
+En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales (###usuario###@fortinetdemo.es)
 
 <p align="center"><img src="images/image1-4.png" width="50%" align="center"></p>
 
