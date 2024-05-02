@@ -27,23 +27,28 @@ A continuación se recoge el diagrama general de los laboratorios disponibles pa
 En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - Creación de una nueva aplicación en FortiWeb Cloud con origen la aplicación web (DVWA) desplegada para cada usuario 
-- Creación de una nueva aplicación en FortiWeb Cloud con origen la API (swagger pet store API) desplegada para cada usuario 
-- Añadiremos los profiles de seguridad necesarios para proteger la aplicación Web y la API. 
-- Lanzaremos pruebas de carga contra FortiWeb para que aprenda los patrones de tráfico de la aplicación y pueda aplicar protección avanzada no basada en firmas, mediante ML.
-- Ejercicios de RedTeam para probar la eficacia de la protección.
+- Creación de una nueva aplicación en FortiWeb Cloud con origen la API (swagger pet store API) desplegada para cada usuario
+- Añadiremos los perfiles de seguridad necesarios para proteger la aplicación Web y la API publicadas
+- Creación de los FQDN asociados a cada aplicación para apuntar a la entrada de FortiWeb Cloud correspondiente
+- Pruebas de carga contra FortiWeb para que aprenda los patrones de tráfico pueda aplicar protección avanzada no basada en firmas, mediante ML
+- Ejercicios de RedTeam para probar la eficacia de la protección
 
-## T2: [T2_fortigslb](./T2_fortigslb)
+## T2: [T2_fortidast](./T2_fortidast)
 
-En este entrenamiento realizaremos lo siguiente:
+En este laboratorio llevaremos a cabo las siguientes tareas:
+
+- Integración de FortiWeb Cloud con el servicio de análisis de vulnerabilidades de FortiDAST
+- Lanzamiento de escaneo sobre las aplicaciones desplegadas para identificar potenciales riesgos de las aplicaciones
+- Análisis de los resultados de los análisis
+
+## T3: [T3_fortigslb](./T3_fortigslb)
+
+En este laboratorio realizaremos lo siguiente:
 - **IMPORTANTE** se debe haber completado con éxito el laboratorio: T2
-- Creación de un nuevo conector contra el Fortigate de laboratorio.
+- Creación de un nuevo conector contra el FortiGate de laboratorio.
 - Creación de un nuevo virtual server.
 - Añadir una nueva entrada servidor al servicio GSLB ya configurado en FortiGSLB.
 - Comprobación que el servicio añade a la resolución DNS de la aplicación nuestra IP.
-
-## Diagrama general de los laboratorios
-
-![architecture overview](images/image0.png)
 
 # Support
 This a personal repository with goal of testing and demo Fortinet solutions on the Cloud. No support is provided and must be used by your own responsability. Cloud Providers will charge for this deployments, please take it in count before proceed.
