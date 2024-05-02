@@ -24,7 +24,7 @@ A continuación se recoge el diagrama general de los laboratorios disponibles pa
 - Cada usuario dispone de dos aplicaciones desplegadas en AWS publicadas a través de un FortiGate
 - Dicho FortiGate dispone de una VIP para publicar dichas aplicaciones en los puertos 31.000 y 31.001
 
-## [FortiWeb](./FortiWEB)
+## [FortiWeb](./FortiWeb)
 
 En este laboratorio llevaremos a cabo las siguientes tareas:
 
