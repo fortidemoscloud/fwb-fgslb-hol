@@ -1,23 +1,33 @@
-# Hands on Lab FortiWEB Cloud y FortiGSLB
-# Protección avanzada de portales WEB y APIs
+# Hands on Lab Seguridad Aplicaciones Web & API
 ## Objetivo del laboratorio
-El objetivo de este laboratorio es conocer y operar los servicios de Fortinet: FortiWEB Cloud y FortiGSLB. Principalmente nos centraremos en la publicación de 2 aplicaciones de forma segura a través de FortiWEB Cloud, un portal WEB y una API. En el proceso aprenderás a entrenar el modelo de Machine Learning (ML) de la API para conocer el esquema OpenAPI de la misma y aplicar protección al portal web basado en TOP10 OWASP y otros ataques sofisticados.
+El objetivo de este laboratorio es conocer la propuesta de valor de Fortinet para proteger aplicaciones web y APIs a través de sus soluciones de FortiWeb Cloud, FortiDAST y FortiGSLB. Durante el workshop se publicarán 2 aplicaciones de forma segura a través de FortiWeb Cloud simulando un entorno corporativo, con un portal web y una API. En el proceso aprenderás a entrenar el modelo de Machine Learning (ML) de la API para conocer el esquema OpenAPI de la misma y aplicar mecanismos de protección sobre el mismo y también cómo proteger portales web frente a ataques TOP10 OWASP y otros ataques sofisticados.
 
-Por último, configuraras nuestro servicio de Global Service Load Balancing (GSLB) mediante DNS, FortiGSLB, para que los usuarios de la aplicación accedan a la misma siempre a su región más cercana. 
+Al margen de ello podremos comprobar el valor añadido que puede aportar nuestro servicio FortiDAST para evaluar de forma continua la postura de seguridad de nuestras aplicaciones y APIs y como nuestro servicio de Global Service Load Balancing (GSLB) mediante DNS, FortiGSLB, puede facilitar una publicación más eficiente de la aplicación en entornos distribuidos facilitando siempre el mejor acceso en base a la ubicación del usuario o a los health checks definidos para cada aplicación. 
 
-El formato del laboratorio consiste en 2 laboratorios diferenciados y para poder realizarlos encontrarás todos los detalles en la siguiente URL, donde deberás introducir el token facilitado.
+El formato del laboratorio consiste en 2 laboratorios diferenciados cuyos datos de acceso se pueden encontrar en la siguiente URL introduciendo el token que se habrá facilitado previamente a cada asistente.
 
 https://workshop.fortinetdemo.es
 
 ## Indice de laboratorios a completar
-* T1_fortiweb: protección WEB y protección avanzada de APIs
-* T2_fortigslb: añadiremos una entrada DNS para vuestras aplicaciones
+* T1_FortiWeb: protección WEB y protección avanzada de APIs
+* T2_FortiDAST: comprobaremos de forma dinámica la seguridad de nuestras aplicaciones web
+* T3_FortiGSLB: añadiremos una entrada DNS para las aplicaciones
+
+## Diagrama general de los laboratorios
+
+A continuación se recoge el diagrama general de los laboratorios disponibles para cada usuario:
+
+![architecture overview](images/image0.png)
+
+- Cada usuario dispone de dos aplicaciones desplegadas en AWS publicadas a través de un FortiGate
+- Dicho FortiGate dispone de una VIP para publicar dichas aplicaciones en los puertos 31.000 y 31.001
 
 ## T1: [T1_fortiweb](./T1_fortiweb)
 
-En este laboratorio realizaremos lo siguiente:
-- Creación de una nueva aplicación en FortiWeb Cloud con origen la aplicación WEB (DVWA) desplegada detrás del FortiGate de tu laboratorio. 
-- Creación de una nueva aplicación en FortiWeb Cloud con origen la API (swagger pet store API) desplegada detrás del FortiGate de tu laboratorio. 
+En este laboratorio llevaremos a cabo las siguientes tareas:
+
+- Creación de una nueva aplicación en FortiWeb Cloud con origen la aplicación web (DVWA) desplegada para cada usuario 
+- Creación de una nueva aplicación en FortiWeb Cloud con origen la API (swagger pet store API) desplegada para cada usuario 
 - Añadiremos los profiles de seguridad necesarios para proteger la aplicación Web y la API. 
 - Lanzaremos pruebas de carga contra FortiWeb para que aprenda los patrones de tráfico de la aplicación y pueda aplicar protección avanzada no basada en firmas, mediante ML.
 - Ejercicios de RedTeam para probar la eficacia de la protección.
