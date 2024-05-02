@@ -22,8 +22,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 - En las opciones de Login seleccionaremos la opción IAM Login y utilizaremos las credenciales que nos facilita el portal
 
 <p align="center"><img src="images/image1-2-2.png" width="50%" align="center"></p>
-
-![image1-1.png](images/image1-1.png)
+<p align="center"><img src="images/image1-1.png" width="60%" align="center"></p>
 
 En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales
 
@@ -100,7 +99,6 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 - Selecciona "DNS Services" en el menú de la izquierda, donde aparecen las zonas DNS relacionadas con esta organización.
 
 <p align="center"><img src="images/image2-10.png" width="50%"></p>
-![image2-10.png](images/image2-10.png)
 
 - Selecciona la entrada "HoL" y editala para añadir una nueva entrada, bóton lapiz que encontrarás a la derecha. 
 
@@ -115,7 +113,7 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
     * Alias: `user_id`-dvwa (ejemplo: fortixpert0-dvwa)
     * Target: `<FortiWeb Cloud FQDN>` (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es.P911111111.fortiwebcloud.net.)
 
-![image2-13.png](images/image2-13.png)
+<p align="center"><img src="images/image2-13.png" width="50%"></p>
 
 > [!WARNING]
 > Es importante que incluyas un "." al final de la entrada de Target
@@ -144,34 +142,32 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 ![image3-1-1-1-2.png](images/image3-1-1-1-2.png)
 
-> Si ya has accedido y reseteado el acceso: Username: "admin" Password "password"
+> Si ya has accedido y reseteado la base de datos el acceso es _Username: "admin" Password "password"_
 
 ### 2.2.1 SQL Injection attack (sitio desprotegido)
 
-**Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal**
+En primer lugar vamos a desactivar la seguridad de nuestro FortiWeb Cloud para permitir que se lleven a cabo los ataques.
 
 ![image3-1-1-1-3.png](images/image3-1-1-1-3.png)
 
-DVWA tiene un módulo simple utilizado para demostrar ataques de inyección SQL que espera valores de user-id como enteros (por ejemplo, 1, 2, 3). La aplicación mostrará información sobre el usuario asociado con un user-ID dado. En el siguiente ejercicio, inyectaremos comandos SQL para acceder a las contraseñas asociadas con los nombres de usuario.
+DVWA tiene un módulo simple utilizado para demostrar ataques de inyección SQL que espera valores de _user-id_ como enteros (por ejemplo, 1, 2, 3). La aplicación mostrará información sobre el usuario asociado con un user-id dado. En el siguiente ejercicio, inyectaremos comandos SQL para acceder a las contraseñas asociadas con los nombres de usuario.
 
-Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
-
-![image3-1-1-1.png](images/image3-1-1-1.png)
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en los pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
 Selecciona nivel de seguridad bajo para evitar que la propia aplicación aplique controles de seguridad sobre los comandos que vamos a ejecutar
 
-![image3-1-1-2.png](images/image3-1-1-2.png)
+![img-2-2-1.png](images/img-2-2-1.png)
 
 Accede a la sección SQL Injection e introduce el siguiente texto en el campo USER ID: `% 'or '1'='1' -- ';`
 
 > [!NOTE]
-> En este escenario, estamos diciendo "mostrar todos los registros que sean falsos y todos los registros que sean verdaderos".
+_> En este escenario, estamos diciendo "mostrar todos los registros que sean falsos y todos los registros que sean verdaderos".
 > %’ - Probablemente no será igual a nada y será falso.
-> ‘1’=‘1’ - Es igual a verdadero, porque 1 siempre será igual a 1.
+> ‘1’=‘1’ - Es igual a verdadero, porque 1 siempre será igual a 1._
 
 ![image3-1-1-1-4.png](images/image3-1-1-1-4.png)
 
-- Introduce el siguiente texto en el campo USER ID: `'or '1'='1' union select null, user() #'`
+- Introduce el siguiente texto en el campo User ID: `'or '1'='1' union select null, user() #'`
 
 ![image3-1-1-1-5.png](images/image3-1-1-1-5.png)
 
@@ -181,18 +177,17 @@ Accede a la sección SQL Injection e introduce el siguiente texto en el campo US
 
 ### 2.2.2 Injection atacks (sitio protegido)
 
-¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 2.2.1, pero activando el modo bloqueo en FortiWeb Cloud?
+¿Qué pasa si vuelves a lanzar los mismos ataques  pero activando el modo bloqueo en FortiWeb Cloud?
 
 ### 2.2.3 Command Injection attack (sitio desprotegido)
 
-**Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal**
+Recuerda desactivar la seguridad de nuestro FortiWeb Cloud para permitir que se lleven a cabo los ataques de este punto.
 
 DVWA tiene un módulo simple utilizado para demostrar ataques de inyección de comandos que espera que un usuario introduzca una dirección IP. La aplicación luego enviará un ping a la dirección IP proporcionada. En el siguiente ejercicio, inyectaremos comandos además de la dirección IP que espera el módulo.
 
 Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
-![image3-1-3-1.png](images/image3-1-3-1.png)
-
+- Selecciona la opción Command Injection en el menú lateral
 - Introduce el siguiente texto que va a permitir ejecutar un comando "pwd" y obtener información sobre el direcotrio donde esta la aplicación desplegada: `4.2.2.2; pwd`
 
 ![img-2-2-3.png](images/img-2-2-3.png)
@@ -200,17 +195,17 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 - Pregunta:
     
     - ¿Sería posible ejecutar un comando como “nc” (netcat) y abrir una shell en el sistema?
-    - ¿Sería posible consultar los metadatos de la instancia que este ejecutando el microservicio y obtener credenciales?
+    - ¿Sería posible obtener la información de los usuarios que tiene el servidor?
 
 <details>
-  <summary>Commandos:</summary>
-  127.0.0.1; curl http://169.254.169.254/latest/meta-data/identity-credentials/ec2/security-credentials/ec2-instance
+  <summary>Compruébalo ;)</summary>
+ _ 127.0.0.1; cat /etc/passwd_
 </details>
 
 
 ### 2.2.4 Command Injection attack (sitio protegido)
 
-¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.3, pero activando el modo bloqueo en FortiWeb Cloud?
+¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto pero activando el modo bloqueo en FortiWeb Cloud?
 
 ## Cross-Site Scripting (XSS) attacks 
 
@@ -224,32 +219,32 @@ Los ataques XSS a menudo se dividen en tres tipos: XSS Persistente: donde la cad
 
 ### 2.2.5 XSS attack (sitio desprotegido)
 
+Recuerda desactivar la seguridad de nuestro FortiWeb Cloud para permitir que se lleven a cabo los ataques de este punto.
+
 Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
-- Haz clic en la pestaña de seguridad de DVWA y asegúrate de que el nivel de seguridad esté configurado en Bajo.
 - Haz clic en la pestaña XSS (Reflejado) a la izquierda para lanzar el módulo.
 - Introduce un texto, ejemplo "john", para probar la funcionalidad del módulo.
-
-![img-2-2-5.png](images/img-2-2-5.png)
-
 - Vas a lanzar un XXS attach injectando el siguiente texto en el campo “what’s your name? “Field: `<script>alert(12345)</script>`
+
+<p align="center"><img src="images/img-2-2-5.png" width="50%"></img></p>
 
 ### 2.2.6 XSS attack (sitio protegido)
 
-¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.5, pero activando el modo bloqueo en FortiWeb Cloud?
+¿Qué pasa si vuelves a lanzar los mismos ataques pero activando el modo bloqueo en FortiWeb Cloud?
 
 > [!TIP]
-> Si has llegado a este punto del labaratorio,sin haber lanzado ningún ataque sobre tu aplicación, puedes hacerlo ahora intentando abrir estas URLs en tu navegador.
+> Si has llegado a este punto del laboratorio,sin haber lanzado ningún ataque sobre tu aplicación, puedes hacerlo ahora intentando abrir estas URLs en tu navegador.
 
 URL:
 
-- SQL injection: http://fortixpert#.hol.fortinetdemo.es/?p=1 or 1=1
-- XSS: http://fortixpert#.hol.fortinetdemo.es/?p=<script>Alert("HACK")<\script>
+- SQL injection: <a href="http://fortixpert#-dvwa.hol.fortinetdemo.es/?p=1%20or%201=1">http://fortixpert#.hol.fortinetdemo.es/?p=1 or 1=1</a>
+- XSS: <a href="http://fortixpert40-dvwa.hol.fortinetdemo.es/?p=<script>Alert('HACK')<\script>">XSS</a>
 - Command Injection: http://fortixpert#.hol.fortinetdemo.es/?p=cmd.exe
 - Known Exploits: http://fortixpert#.hol.fortinetdemo.es/?wp-verify-link=test
 - Trojan: http://fortixpert#.hol.fortinetdemo.es/?act=encoder
 
-Donde _fortixpert#_ corresponde a tu user_id del laboratorio.
+Donde _fortixpert#_ corresponde a tu 'user_id' del laboratorio.
 
 ## 2.3 Observabilidad en FortiWEB
 
