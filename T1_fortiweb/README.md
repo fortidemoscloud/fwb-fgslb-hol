@@ -251,7 +251,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 - Haz clic en la pestaña XSS (Reflejado) a la izquierda para lanzar el módulo.
 - Introduce un texto, ejemplo "john", para probar la funcionalidad del módulo.
 
-![image3-1-3-5.png](images/image3-1-3-5.png)
+![img-2-2-5.png](images/img-2-2-5.png)
 
 - Vas a lanzar un XXS attach injectando el siguiente texto en el campo “what’s your name? “Field: `<script>alert(12345)</script>`
 
@@ -262,17 +262,15 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 > [!TIP]
 > Si has llegado a este punto del labaratorio,sin haber lanzado ningún ataque sobre tu aplicación, puedes hacerlo ahora intentando abrir estas URLs en tu navegador.
 
-<detail>
-<summary>URL:</summary>
-- SQL injection: http://fortixpert`X`.hol.fortinetdemos.es/?p=1 or 1=1
-- XSS: http://fortixpert`X`.hol.fortinetdemos.es/?p=<script>Alert("HACK")<\script>
-- Command Injection: http://fortixpert`X`.hol.fortinetdemos.es/?p=cmd.exe
-- Known Exploits: http://fortixpert`X`.hol.fortinetdemos.es/?wp-verify-link=test
-- Trojan: http://fortixpert`X`.hol.fortinetdemos.es/?act=encoder
+URL:
 
-Donde fortixpert`X` corresponde a tu user_id del laboratorio.
-<detail>
+- SQL injection: http://fortixpert#.hol.fortinetdemo.es/?p=1 or 1=1
+- XSS: http://fortixpert#.hol.fortinetdemo.es/?p=<script>Alert("HACK")<\script>
+- Command Injection: http://fortixpert#.hol.fortinetdemo.es/?p=cmd.exe
+- Known Exploits: http://fortixpert#.hol.fortinetdemo.es/?wp-verify-link=test
+- Trojan: http://fortixpert#.hol.fortinetdemo.es/?act=encoder
 
+Donde _fortixpert#_ corresponde a tu user_id del laboratorio.
 
 ## 2.3 Observabilidad en FortiWEB
 
@@ -287,7 +285,7 @@ Principales ventajas:
     - Ingiere eventos de todos tus entornos de nube híbrida.
     - Alivia la fatiga por alertas.
 
-El acceso a Threat Analytics se realiza a través del portal de FortiWeb-Cloud, donde encontrarás los registros de ataques.
+El acceso a Threat Analytics se realiza a través del portal de FortiWeb Cloud, donde encontrarás los registros de ataques.
 
 ![image3-2-1.png](images/image3-2-1.png)
 
@@ -296,20 +294,20 @@ Chequea la IP desde la que se han lanzado los ataques.
 ![image3-2-2.png](images/image3-2-2.png)
 
 ### Afinamiento de falsos positivos
+
 Desde los logs de ataques, es posible crear excepciones de una manera sencilla.
 
 ![image3-2-3.png](images/image3-2-3.png)
 
-Todas las excepciones configuradas se reflejan desde `SECURITY RULES > Known Attacks`. Si el log de la aplicación, al que estamos creando la excepción, tiene asigando un template, estas quedarán reflejadas en dicho template y será donde deberiamos resetearlas para volver para la configuración incial del mismo.
+Todas las excepciones configuradas se reflejan desde `SECURITY RULES > Known Attacks`. Si el log de la aplicación, al que estamos creando la excepción, tiene asigando un template, estas quedarán reflejadas en dicho template y será donde deberiamos resetearlas para volver para la configuración inicial del mismo.
 
-También desde `FortiView` dentro de cada una de las aplicaciones, es posible encontrar información detallada sobre los ataques detectedados. 
+También desde `FortiView` dentro de cada una de las aplicaciones, es posible encontrar información detallada sobre los ataques detectados. 
 
 ![image3-2-5.png](images/image3-2-5.png)
 
 ### 3 Creación de aplicación API (Swagger Pet Store)
 
 - Comprueba que tu aplicación es accesible desde Internet, puedes encontrar la url a la misma en los datos del laboratorio: Acceso a tus aplicaciones > api_url
-- La creación de una nueva aplicación en FortiWeb Cloud es bastante sencilla. En este laboratorio realizaremos el alta via GUI en el portal, pero se puede automatizar realizando peticiones a la API del servicio. [FortiWEB Cloud API reference](http://www.fortiweb-cloud.com/apidoc/api.html)
 
 Para dar de alta la aplicación, seguirás los mismos pasos que en el punto anterior. 
 
@@ -352,8 +350,8 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 
 - La entrada CNAME corresponde al FQDN que has obtenido al dar de alta la aplicación en FortiWeb Cloud.
   
-    * Alias: `user_id`-dvwa (ejemplo: fortixpert0-dvwa)
-    * Target: `<FortiWeb Cloud FQDN>` (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es.P911111111.fortiwebcloud.net.)
+    * Alias: `user_id`-api (ejemplo: fortixpert0-dvwa)
+    * Target: `<FortiWeb Cloud FQDN>` (ejemplo: fortixpert0-api.hol.fortinetdemo.es.P911111111.fortiwebcloud.net.)
 
 ![image2-13.png](images/image2-13.png)
 
@@ -363,13 +361,14 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 > [!WARNING]
 > Es un entorno compartido, por favor no modifiques nada que no sea lo indicado en la guía o podrás afectar al resto de usuarios
 
-- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada, (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWeb Cloud. 
+- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada, (ejemplo: fortixpert0-api.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWeb Cloud. 
 
 > [!TIP]
 > Si no has copiado el CNAME que ha generado FortiWeb para la aplicación puedes ir al menú "NETWORK > Endpoints" y recuperarlo.
 
 ## 3.2 Entrenamiento del módelo ML de API
-El template de seguridad aplicado para vuestra aplicación API, lleva activado la protección de APIs mediante Machine Learning. Para que el modelo pueda aprender el patron de tráfico de la aplicación, vamos a forzar cierto tráfico mediante un par de script. Para revisar el template podeis hacerlo desde el menú de la izquierda `GLOBAL > templates`
+
+El template de seguridad aplicado para la aplicación API, lleva activada la protección de APIs mediante Machine Learning. Para que el modelo pueda aprender el patrón de tráfico de la aplicación, vamos a forzar cierto tráfico mediante un par de scripts que permiten simular lo que sería un uso normal de la API. Para revisar el template podeis hacerlo desde el menú de la izquierda `GLOBAL > Templates`
 
 ![image3-3-0.png](images/image3-2-1.png)
 
@@ -377,16 +376,16 @@ Seleccionar el template `api-hol-template` y revisar los profile de seguridad ap
 
 ### 3.2.1 Lanzar los scripts de entrenamiento y aprendizaje
 
-- En la carpeta scripts de la guia del laboratorio, podrás encontrar script en bash o PowerShell.
-- Copia los scripts para ejecutarlos desde tu PC. (Si tieneas algún problema con esto, pregunta para que te demos acceso a un entorno linux).
-- Debes copiar dos scripts, que serán los que lancen las del entrenamiento via GET y POST. 
+- En la carpeta scripts de la guía del laboratorio, podrás encontrar script en bash o PowerShell para poder ser ejecutos en entornos Windows o Mac/Linux.
+- Copia los scripts para ejecutarlos desde tu PC. (Si tienes algún problema con esto, pregunta para que te demos acceso a un entorno linux).
+- Debes copiar dos scripts, que serán los que lancen las simulaciones del entrenamiento via GET y POST. 
 
 - Añade los permisos de ejecución a los scripts a ejecutar (caso de MAC o Linux):
 ```sh
 chmod +x fwb_training_get.sh
 chmod +x fwb_training_post.sh
 ```
-- Ejecutar los scripts: (debes introducir la URL de tu aplicación API en formato correcto, ejemplo: fortixpert0-api.hol.fortinetdemo.es)
+- Ejecutar los scripts: (debes introducir la URL de tu aplicación API en formato correcto, ejemplo: https://fortixpert0-api.hol.fortinetdemo.es)
 ```sh
 ./fwb_training_get.sh <URL de la API> 
 ```
@@ -396,13 +395,13 @@ chmod +x fwb_training_post.sh
 
 ### 3.2.2 Comprobación de los patrones aprendidos
 
-**IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto después**
+**IMPORTANTE: los resultados del aprendizaje tarda unos minutos en mostrarse en la plataforma, no desesperes. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto después**
 
-- Iremos a la sección API colection de la aplicación, en el menú de la izquierda `API PROTECTION > ML Based API Protection`
+- Iremos a la sección API Collection de la aplicación, en el menú de la izquierda `API PROTECTION > ML Based API Protection`
 
 ![image3-3-1.png](images/image3-3-1.png)
 
-- Cuando haya pasado un tiempo desde el lanzamiento de los scripts de entranmiento, que dependerá de la zona en la que se haya desplegado la aplicación, se presentarán los patrones de tráfico aprendidos por el modelo. 
+- Cuando haya pasado un tiempo desde el lanzamiento de los scripts de entrenamiento se presentarán los patrones de tráfico aprendidos por el modelo. 
 
 ![image3-3-2.png](images/image3-3-2.png)
 
@@ -424,9 +423,7 @@ Por defecto, el esquema aprendido deja la protección en standby, de forma que l
 
 ## 3.2.4 Ataques sobre la API
 
-En este apartado vamos a comprobar, como de forma automática, FortiWEB Cloud puede proteger las llamadas a la API, en función a lo aprendido en los patrones de tráfico y al esquema Swagger que ha definido. 
-
-**IMPORTANTE: es posible que para los participantes que estén en zonas que no sean Irlanda (eu-west-1), la plataforma tarde hasta 30 minutos en mostrar los resultados del aprendizaje. Si es tu caso, puedes avanzar en el laboratorio y luego volver a este punto después**
+En este apartado vamos a comprobar, como de forma automática, FortiWeb Cloud puede proteger las llamadas a la API, en función a lo aprendido en los patrones de tráfico y al esquema Swagger que ha definido. 
 
 En el punto 3.2.3, se ha modificado el comportamiento de protección frente a llamadas que no cumplan con el esquema. Comprobar este punto para esperar un comportamiento u otro en los siguientes test.
 
