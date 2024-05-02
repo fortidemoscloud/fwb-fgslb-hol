@@ -12,8 +12,8 @@ https://workshop.fortinetdemo.es
 
 ## Indice de laboratorios a completar
 
-* FortiWeb: protección WEB y protección avanzada de APIs
-* FortiDAST: comprobaremos de forma dinámica la seguridad de nuestras aplicaciones web
+* [FortiWeb](./FortiWeb): protección WEB y protección avanzada de APIs
+* [FortiDAST](./FortiDAST): análisis de vulnerabilidades de las aplicaciones
 
 ## Diagrama general de los laboratorios
 
