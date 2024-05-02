@@ -1,4 +1,4 @@
-## T1: [T1_fortiweb](./T1_fortiweb)
+## [FortiWeb Cloud](./FortiWeb)
 
 En este laboratorio llevaremos a cabo las siguientes tareas:
 
@@ -8,8 +8,6 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 - Creación de los FQDN asociados a cada aplicación para apuntar a la entrada de FortiWeb Cloud correspondiente
 - Pruebas de carga contra FortiWeb para que aprenda los patrones de tráfico pueda aplicar protección avanzada no basada en firmas, mediante ML
 - Ejercicios de RedTeam para probar la eficacia de la protección
-
-## Pasos a seguir:
 
 ## 1. Conexión al servicio de FortiWeb Cloud
 
