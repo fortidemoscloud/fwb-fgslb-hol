@@ -64,8 +64,8 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ![img1-4.png](images/img1-4.png)
 
-- Si todo ha ido bien en FortiDAST veremos como el escáner cambia de estado pasando a In Progress
-- Podremos acceder al escáner e ir viendo su evolución desde la opción View
+- Si todo ha ido bien en FortiDAST veremos como el escáner cambia de estado pasando a _In Progress_
+- Podremos acceder al escáner e ir viendo su evolución desde la opción _View_
 - FortiDAST analizará el número de URLs y tecnologías empleadas en la aplicación para ajustar automáticamente los análisis
 
 ![img1-10.png](images/img1-10.png)
