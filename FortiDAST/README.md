@@ -16,6 +16,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 - Damos de alta nuestra aplicación para el escaneo
 
 ![img1-2.png](images/img1-2.png)
+![img1-14.png](images/img1-14.png)
 
 - Seleccionamos la opción Bypass para que el análisis se salte los controles que aplica FortiWeb sobre la aplicación
 
@@ -52,7 +53,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - La entrada TXT corresponde al UUID que nos ofrece FortiDAST cuando damos de alta el escaneo:
 
-![img1-8.png](images/img1-8.png)
+![img1-15.png](images/img1-15.png)
 
 > [!WARNING]
 > Es un entorno compartido, por favor no modifiques nada que no sea lo indicado en la guía o podrás afectar al resto de usuarios
