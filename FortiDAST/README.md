@@ -17,6 +17,9 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ![img1-2.png](images/img1-2.png)
 
+- Seleccionamos la opción Bypass para que el análisis se salte los controles que aplica FortiWeb sobre la aplicación
+
+![img1-9.png](images/img1-9.png)
 
 - El escaneo quedará pendiente de autorización para ser lanzado. Para ello debemos acceder a la configuración del análisis que nos dará acceso a FortiDAST
 
@@ -58,13 +61,23 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - Una vez autorizada la aplicación en FortiWeb Cloud ya tendremos la opción de lanzar el escáner
 
-![img1-10.png](images/img1-10.png)
+![img1-4.png](images/img1-4.png)
 
 - Si todo ha ido bien en FortiDAST veremos como el escáner cambia de estado pasando a In Progress
+- Podremos acceder al escáner e ir viendo su evolución desde la opción View
+- FortiDAST analizará el número de URLs y tecnologías empleadas en la aplicación para ajustar automáticamente los análisis
+
+![img1-10.png](images/img1-10.png)
+
+- Si accedemos a Scan Results podemos ir viendo la evolución del análisis tanto a nivel general (Summary) como para cada una de las URIs a analizar (Vulnerabilities)
 
 ![img1-11.png](images/img1-11.png)
+![img1-12.png](images/img1-12.png)
 
-- Podremos acceder al escáner e ir viendo su evolución desde la opción View
-- En Summary veremos un resumen de los resultados obtenidos mientras que en Vulnerabilities podremos ver un detalle de los resultados de cada una de las URLs escaneadas
+- Podemos ver el detalle de los resultados de cada URI pinchando directamente sobre cada una de ellas:
+
+![img1-13.png](images/img1-13.png)
+
+- En las diferentes vistas podemos ver los diferentes descubrimientos por nivel de criticidad (CVSS), Categoría OWASP o SANS, Tecnologías descubiertas,...
 
 
