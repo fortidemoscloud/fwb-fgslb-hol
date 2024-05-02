@@ -28,7 +28,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - En FortiDAST nos aparecerá pre-configurado el análisis para lanzarle a la aplicación donde simplemente tendremos que seleccionar Ok y apuntar el UUID facilitado
  
-[img1-5.png](images/img1-5.png)
+![img1-5.png](images/img1-5.png)
 
 - En el caso de que la aplicación no aparezca como autorizada tras darla de alta necesitaremos crear una entrada en nuestro servidor DNS (FortiGSLB) para validar el activo a analizar
 
