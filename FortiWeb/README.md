@@ -24,12 +24,12 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales
 
-<p align="center"><img src="images/image1-4.png" width="80%" align="center"></p>
+<p align="center"><img src="images/image1-4.png" width="50%" align="center"></p>
 
 ## 2. Creación aplicación portal Web (DVWA)
 
-- Comprueba que tu aplicación es accesible desde Internet. Puedes encontrar la url a la misma en los datos del laboratorio: Acceso a tus aplicaciones > dvwa_url
-- La creación de una nueva aplicación en FortiWeb Cloud es bastante sencilla. En este laboratorio realizaremos el alta via GUI en el portal, pero se puede automatizar realizando peticiones a la API del servicio. [FortiWEB Cloud API reference](http://www.fortiweb-cloud.com/apidoc/api.html)
+- Comprueba que tu aplicación es accesible desde Internet. Puedes encontrar la url a la misma en los datos del laboratorio: _Acceso a tus aplicaciones > dvwa_url_
+- La creación de una nueva aplicación en FortiWeb Cloud es bastante sencilla. En este laboratorio realizaremos el alta via GUI en el portal, pero se puede automatizar realizando peticiones a la API del servicio. [FortiWeb Cloud API reference](http://www.fortiweb-cloud.com/apidoc/api.html)
 - En el menú de la izquierda seleccionaremos `Global > Applications`
 - Dentro de la sección Aplicaciones, clicaremos en `ADD APPLICATION` para arrancar el wizard de alta de la aplicación.
 
@@ -279,7 +279,7 @@ Todas las excepciones configuradas se reflejan desde `SECURITY RULES > Known Att
 
 ### 3 Creación de aplicación API (Swagger Pet Store)
 
-- Comprueba que tu aplicación es accesible desde Internet, puedes encontrar la URL a la misma en los datos del laboratorio: Acceso a tus aplicaciones > api_url
+- Comprueba que tu aplicación es accesible desde Internet, puedes encontrar la URL a la misma en los datos del laboratorio: _Acceso a tus aplicaciones > api_url_
 
 Para dar de alta la aplicación, seguirás los mismos pasos que en el punto anterior para el portal Web DVWA. 
 
