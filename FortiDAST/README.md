@@ -16,16 +16,15 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 - Damos de alta nuestra aplicación para el escaneo
 
 ![img1-2.png](images/img1-2.png)
-![img1-3.png](images/img1-3.png)
 
-- Apunta el UUID que facilita la aplicación porque lo necesitaremos para la autorización
+
 - El escaneo quedará pendiente de autorización para ser lanzado. Para ello debemos acceder a la configuración del análisis que nos dará acceso a FortiDAST
 
-![img1-4.png](images/img1-4.png)
+![img1-3.png](images/img1-3.png)
 
-- En FortiDAST no aparecerá pre-configurado el análisis para lanzarle a la aplicación donde simplemente tendremos que seleccionar Ok
-
-![img1-5.png](images/img1-5.png)
+- En FortiDAST nos aparecerá pre-configurado el análisis para lanzarle a la aplicación donde simplemente tendremos que seleccionar Ok y apuntar el UUID facilitado
+ 
+[img1-5.png](images/img1-5.png)
 
 - En el caso de que la aplicación no aparezca como autorizada tras darla de alta necesitaremos crear una entrada en nuestro servidor DNS (FortiGSLB) para validar el activo a analizar
 
@@ -46,7 +45,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - En la parte inferior de la entrada, tras los parámetros de definición de la misma, encontrarás el menú para crear un nuevo registro de tipo TXT. 
 
-![img1-9.png](images/img1-9.png)
+![img1-6.png](images/img1-6.png)
 
 - La entrada TXT corresponde al UUID que nos ofrece FortiDAST cuando damos de alta el escaneo:
 
