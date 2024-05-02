@@ -216,11 +216,12 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 - Introduce el siguiente texto que va a permitir ejecutar un comando "pwd" y obtener información sobre el direcotrio donde esta la aplicación desplegada: `4.2.2.2; pwd`
 
-![image3-1-3-2.png](images/image3-1-3-2.png)
+![img-2-2-3.png](images/img-2-2-3.png)
 
 - Pregunta:
-    - ¿sería posible ejecutar un comando como “nc” (netcat) y abrir una shell en el sistema?
-    - ¿sería posible consultar los metadatos de la instancia que este ejecutando el microservicio y obtener credenciales?
+    
+    - ¿Sería posible ejecutar un comando como “nc” (netcat) y abrir una shell en el sistema?
+    - ¿Sería posible consultar los metadatos de la instancia que este ejecutando el microservicio y obtener credenciales?
 
 <details>
   <summary>Commandos:</summary>
