@@ -40,62 +40,64 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - En las opciones de Login seleccionaremos la opción IAM Login y utilizaremos las credenciales que nos facilita el portal
 
-![image1-2-2.png](images/image1-2-2.png)
+<p align="center"><img src="images/image1-2-2.png" width="50%" align="center"></p>
 
 ![image1-1.png](images/image1-1.png)
 
 En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales
 
-![image1-4.png](images/image1-4.png)
+<p align="center"><img src="images/image1-4.png" width="80%" align="center"></p>
 
 ## 2. Creación aplicación portal Web (DVWA)
 
 - Comprueba que tu aplicación es accesible desde Internet. Puedes encontrar la url a la misma en los datos del laboratorio: Acceso a tus aplicaciones > dvwa_url
 - La creación de una nueva aplicación en FortiWeb Cloud es bastante sencilla. En este laboratorio realizaremos el alta via GUI en el portal, pero se puede automatizar realizando peticiones a la API del servicio. [FortiWEB Cloud API reference](http://www.fortiweb-cloud.com/apidoc/api.html)
 - En el menú de la izquierda seleccionaremos `Global > Applications`
+- Dentro de la sección Aplicaciones, clicaremos en `ADD APPLICATION` para arrancar el wizard de alta de la aplicación.
 
 ![image2-1-2.png](images/image2-1-2.png)
 
-- Dentro de la sección Aplicaciones, clicaremos en `ADD APPLICATION` para arrancar el wizard de alta de la aplicación.
-
-![image2-2.png](images/image2-2.png)
-
 - Wizard step 1: Nombre de aplicación y dominio
 
-    * Web Application Name: `user_id`-dvwa (Usuario FortiCloud asignado, ejemplo: fortixpert0-dvwa) - este valor no es más que un identificador dentro del portal para organizar las diferentes aplicaciones
-    * Domain Name: `user_id`-dvwa.hol.fortinetdemo.es (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es) - este valor es el que va a determinar que FQDN va a tener nuestra aplicación y que posteriormente a nivel DNS redirigiremos a FortiWeb Cloud
+    * **Web Application Name**: `user_id`-dvwa (Usuario FortiCloud asignado, ejemplo: fortixpert0-dvwa) - este valor no es más que un identificador dentro del portal para organizar las diferentes aplicaciones
+    * **Domain Name**: `user_id`-dvwa.hol.fortinetdemo.es (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es) - este valor es el que va a determinar que FQDN va a tener nuestra aplicación y que posteriormente a nivel DNS redirigiremos a FortiWeb Cloud
 
 ![image2-3.png](images/image2-3.png)
 
 - Wizard step 2: Protocolo, puertos e IP origen del servidor
   
-    * Services allowed: HTTP y HTTPS (FWB Cloud se apoya en Let's Encrypt o en certificados propios del cliente para asignar el certificado a la aplicación de forma automática)
-    * IP Address: (IP pública de la aplicación, ejemplo: dvwa_url  = http://***15.188.151.180***:31000)
-    * Port: 31000 (Puerto TCP, ejemplo: dvwa_url  = http://15.188.151.180:***31000*** ))
-    * Test Server: (comprobar conexión al servidor usando HTTP)
+    * **Services allowed**: HTTP y HTTPS (FWB Cloud se apoya en Let's Encrypt o en certificados propios del cliente para asignar el certificado a la aplicación de forma automática)
+    * **IP Address**: (IP pública de la aplicación, ejemplo: dvwa_url  = http://***15.188.151.180***:31000)
+    * **Port**: 31000 (Puerto TCP, ejemplo: dvwa_url  = http://15.188.151.180:***31000*** ))
+    * **Test Server**: (comprobar conexión al servidor usando HTTP)
 
-Nota: puedes obtener la IP pública de tu aplicación DVWA en los datos de laboratorio, en la parte de "Acceso a tus aplicaciones > dvwa_url"
+> [!TIP]
+Puedes obtener la IP pública de tu aplicación DVWA en los datos de laboratorio, en la parte de _"Acceso a tus aplicaciones > dvwa_url"_
 
 ![image2-4-2.png](images/image2-4-2.png)
 
 - Wizard step 3: CDN
-    * NO habilitaremos servicios de CDN
+  
+    * **NO habilitaremos** servicios de CDN
     * La plataforma nos ofrecerá como ubicación para nuestra instancia la región más cercana a nuestra aplicación (para el workshop usamos las regiones de Irlanda, Londres y París)
 
-![image2-5.png](images/image2-5.png)
+<p align="center"><img src="images/image2-5.png"></p>
 
-- Wizard step 4: Habilitar modo bloqueo y template
+- Wizard step 4: Habilitar modo bloqueo y asignar template a la aplicación
+  
     * Enable Block mode: ON (habilitamos la protección)
     * Template: `dvwa-hol-template` (selecionamos este template en el desplegable)
     * NOTA: el template permite definir qué funcionalidades de FortiWeb Cloud queremos habilitar para nuestra aplicación
 
 ![image2-6.png](images/image2-6.png)
 
-- Completado: 
+- Completado:
+  
     * El resultado es un nuevo FQDN que genera el servicio de FortiWeb Cloud de nuestra applicación para acceder a través de FortiWEB Cloud y poder actualizar nuestros servidores DNS.
     * Desde el nuevo FQDN fqdn podremos acceder a nuestra aplicación a través de FortiWEB Cloud.
 
-Nota: copiar el nuevo FQDN para utilizar en el siguiente punto donde modificaremos los registros DNS de nuestro dominio
+> [!TIP]
+Copiar el nuevo FQDN para utilizar en el siguiente punto donde modificaremos los registros DNS de nuestro dominio
 
 ![image2-7.png](images/image2-7.png)
 
@@ -110,16 +112,13 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 
 - Con el mismo IAM user con el que hemos accedido a FortiWeb Cloud es posible acceder al servicio SaaS de FortiGSLB en la url [FortiGSLB](http://www.fortigslb.com/)
 
-![image1-2.png](images/image1-2.png)
-
-**Recuerda: acceso del tipo IAM login**
-
 - Selecciona la organización HoL.
 
-![image2-9.png](images/image2-9.png)
+<p align="center"><img src="images/image2-9.png" width="80%"></p>
 
 - Selecciona "DNS Services" en el menú de la izquierda, donde aparecen las zonas DNS relacionadas con esta organización.
 
+<p align="center"><img src="images/image2-10.png" width="50%"></p>
 ![image2-10.png](images/image2-10.png)
 
 - Selecciona la entrada "HoL" y editala para añadir una nueva entrada, bóton lapiz que encontrarás a la derecha. 
@@ -143,8 +142,7 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 > [!WARNING]
 > Es un entorno compartido, por favor no modifiques nada que no sea lo indicado en la guía o podrás afectar al resto de usuarios
 
-- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada, (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWeb Cloud.
-
+- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada _(ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es)_, apunta al FQDN de la aplicación creada en FortiWeb Cloud.
 - En este punto podrás comprobar al acceder a la aplicación a través de HTTPS como FortiWeb ha desplegado el certificado requerido para securizar la comunicación con la aplicación. Inicialmente se instala un certificado propio de FortiWeb y en cuestión de minutos se podrá comprobar como se despliega el certificado de Let's Encrypt de forma automatizada
 
 > [!TIP]
