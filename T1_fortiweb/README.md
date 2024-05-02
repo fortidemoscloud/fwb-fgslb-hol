@@ -369,15 +369,15 @@ chmod +x fwb_training_post.sh
 
 - Iremos a la sección API Collection de la aplicación, en el menú de la izquierda `API PROTECTION > ML Based API Protection`
 
-![image3-3-1.png](images/image3-3-1.png)
+<p align="center"><img src="images/image3-3-1.png" width="30%"></p>
 
 - Cuando haya pasado un tiempo desde el lanzamiento de los scripts de entrenamiento se presentarán los patrones de tráfico aprendidos por el modelo. 
 
-![img-3-2-2.png](images/img3-2-2.png)
+![img-3-2-2.png](images/img-3-2-2.png)
 
 - Se puede consultar el esquema API aprendido, incluso lo podemos descargar si fuera necesario, cambiando la vista a `API View` en la parte de la derecha. 
 
-![img-3-2-3.png](images/img3-2-3.png)
+![img-3-2-3.png](images/img-3-2-3.png)
 
 ### 3.2.3 Aplicar bloqueo en las llamadas que no cumplan con el esquema
 
@@ -385,11 +385,11 @@ Por defecto, el esquema aprendido deja la protección en standby, de forma que l
 
 - Dentro de `API Collection`, donde aparecen los modelos aprendidos de API Paths, podemos dar a editar el comportamiento de protección, dandole al boton de editar que aparece a la derecha en la columna Action. 
 
-![img-3-2-4.png](images/img3-2-4.png)
+![img-3-2-4.png](images/img-3-2-4.png)
 
 - Dentro de la customización del API Path aprendido, entre otras cosas podemos modificar el comportamiento de protección, seleccionandolo en el desplegable de arriba a la derecha. 
 
-![img-3-2-5.png](images/img3-2-5.png)
+![img-3-2-5.png](images/img-3-2-5.png)
 
 ## 3.2.4 Ataques sobre la API
 
@@ -399,19 +399,18 @@ En el punto 3.2.3, se ha modificado el comportamiento de protección frente a ll
 
 ### 3.2.4.1 Query Parameter Violation
 
-```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'
-```
-
     "status" JSON parameter is missing in the JSON request and is blocked by FortiWeb-Cloud. The expected result is a Request query validation failed status.
 
+```sh
+curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'
+```
 
 ### 3.2.4.2 URL Query Parameter Long
 
     "status" URL query parameter is too long. The expected result, JSON parameter length violation.
 
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 ### 3.2.4.3 URL Query Parameter Short
@@ -419,14 +418,15 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatu
     "status" URL query parameter is too short. The expected result is a parameter violation.
 
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 ### 3.2.4.4 Cross Site Script in URL
 
     "status" URL query parameter will carry a Command Injection attack. The expected result is a known signature violation.
+    
 ```sh
-curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=<script>alert(123)</script>'  -H 'Accept: application/json' -H 'Content-Type: application/json'
+curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=<script>alert(123)</script>'  -H 'Accept: application/json' -H 'Content-Type: application/json'
 ```
 
 ### 3.2.4.5 Cross Site Script in Body
@@ -434,7 +434,7 @@ curl -v -X 'GET' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatu
     "status" JSON body will carry an XSS attack. The expected result, the attack is being blocked by Machine Learning.
 
 ```sh
-curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "FortiCamel", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "<script>alert(123)</script>"}'
+curl -v -X 'POST' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "FortiCamel", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "<script>alert(123)</script>"}'
 ```
 
 ### 3.2.4.6 Zero Day Attacks
@@ -449,7 +449,7 @@ curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accep
 
 ## Laboratorio completado
 
-Una vez concluido este laboratoria es hora de Pasar al lab 2: [T2_fortigslb](http://github.com/fortidemoscloud/fwb-fgslb-hol/tree/main/T2_fortigslb)
+Una vez concluido este laboratorio es hora de Pasar al laboratorio 2: [FortiDAST](http://github.com/fortidemoscloud/fwb-fgslb-hol/tree/main/FortiDAST)
 
 # Support
 This a personal repository with goal of testing and demo Fortinet solutions on the Cloud. No support is provided and must be used by your own responsability. Cloud Providers will charge for this deployments, please take it in count before proceed.
