@@ -18,7 +18,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 ![img1-2.png](images/img1-2.png)
 ![img1-14.png](images/img1-14.png)
 
-- Seleccionamos la opción Bypass para que el análisis se salte los controles que aplica FortiWeb sobre la aplicación
+- Seleccionamos la opción _Bypass_ para que el análisis se salte los controles que aplica FortiWeb sobre la aplicación
 
 ![img1-9.png](images/img1-9.png)
 
@@ -70,7 +70,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ![img1-10.png](images/img1-10.png)
 
-- Si accedemos a Scan Results podemos ir viendo la evolución del análisis tanto a nivel general (Summary) como para cada una de las URIs a analizar (Vulnerabilities)
+- Si accedemos a _Scan Results_ podemos ir viendo la evolución del análisis tanto a nivel general (_Summary_) como para cada una de las URIs a analizar (_Vulnerabilities_)
 
 ![img1-11.png](images/img1-11.png)
 ![img1-12.png](images/img1-12.png)
@@ -80,7 +80,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 ![img1-13.png](images/img1-13.png)
 
 - En las diferentes vistas podemos ver los diferentes descubrimientos por nivel de criticidad (CVSS), Categoría OWASP o SANS, Tecnologías descubiertas,...
-- Una vez concluido el análisis podremos ver el Threat Score que nos asigna la herramienta de forma sencilla
+- Una vez concluido el análisis podremos ver el _Threat Score_ que nos asigna la herramienta de forma sencilla
 
 ![img1-16.png](images/img1-16.png)
 
