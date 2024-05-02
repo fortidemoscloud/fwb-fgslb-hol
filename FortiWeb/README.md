@@ -158,11 +158,6 @@ Selecciona nivel de seguridad bajo para evitar que la propia aplicación aplique
 
 Accede a la sección SQL Injection e introduce el siguiente texto en el campo USER ID: `% 'or '1'='1' -- ';`
 
-> [!NOTE]
-_> En este escenario, estamos diciendo "mostrar todos los registros que sean falsos y todos los registros que sean verdaderos".
-> %’ - Probablemente no será igual a nada y será falso.
-> ‘1’=‘1’ - Es igual a verdadero, porque 1 siempre será igual a 1._
-
 ![image3-1-1-1-4.png](images/image3-1-1-1-4.png)
 
 - Introduce el siguiente texto en el campo User ID: `'or '1'='1' union select null, user() #'`
