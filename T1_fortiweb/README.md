@@ -10,21 +10,12 @@ https://workshop.fortinetdemo.es
 
 Una vez dentro del portal para conocer el detalle del entorno de cada usuario se debe consultar el fichero Credenciales_Acceso.xlsx disponible en este enlace y cuya contraseña es la misma que el token facilitado:
 
-https://drive.google.com/file/d/1mDOx0rxCCXkXzKrHJvAoF-t-Smxg2f-2/view?usp=sharing
+[Credenciales_acceso](https://drive.google.com/file/d/1mDOx0rxCCXkXzKrHJvAoF-t-Smxg2f-2/view?usp=sharing)
 
 ## Indice de laboratorios a completar
 * **T1_fortiweb**: protección WEB y protección avanzada de APIs
 * T2_FortiDAST: comprobaremos de forma dinámica la seguridad de nuestras aplicaciones web
 * T3_FortiGSLB: añadiremos una entrada DNS para las aplicaciones
-
-## Diagrama general de los laboratorios
-
-A continuación se recoge el diagrama general de los laboratorios disponibles para cada usuario:
-
-![architecture overview](images/image0.png)
-
-- Cada usuario dispone de dos aplicaciones desplegadas en AWS publicadas a través de un FortiGate
-- Dicho FortiGate dispone de una VIP para publicar dichas aplicaciones en los puertos 31.000 y 31.001
 
 ## T1: [T1_fortiweb](./T1_fortiweb)
 
@@ -41,7 +32,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ## 1. Conexión al servicio de FortiWeb Cloud
 
-- Para acceder al servicio de FortiWeb Cloud se ha habilitado un acceso IAM donde cada usuario tendrá sus propias credenciales de acceso bajo una cuenta matriz donde se encuentra el servicio ()
+- Para acceder al servicio de FortiWeb Cloud se ha habilitado un acceso IAM donde cada usuario tendrá sus propias credenciales de acceso bajo una cuenta matriz donde se encuentra el servicio
 - El acceso a FortiWeb Cloud puede llevarse a cabo desde la siguiente URL: [FortiWEB Cloud](http://www.fortiweb-cloud.com/)
 - Seleccionamos la opción Login
 
@@ -85,7 +76,7 @@ En este primer login será necesario validar la cuenta de cada usuario para lo q
 
 Nota: puedes obtener la IP pública de tu aplicación DVWA en los datos de laboratorio, en la parte de "Acceso a tus aplicaciones > dvwa_url"
 
-![image2-4.png](images/image2-4.png)
+![image2-4-2.png](images/image2-4-2.png)
 
 - Wizard step 3: CDN
     * NO habilitaremos servicios de CDN
@@ -104,11 +95,11 @@ Nota: puedes obtener la IP pública de tu aplicación DVWA en los datos de labor
     * El resultado es un nuevo FQDN que genera el servicio de FortiWeb Cloud de nuestra applicación para acceder a través de FortiWEB Cloud y poder actualizar nuestros servidores DNS.
     * Desde el nuevo FQDN fqdn podremos acceder a nuestra aplicación a través de FortiWEB Cloud.
 
-Nota: copiar el nuevo FQDN para utilizar en el punto 4 donde modificaremos los registros DNS de nuestro dominio
+Nota: copiar el nuevo FQDN para utilizar en el siguiente punto donde modificaremos los registros DNS de nuestro dominio
 
 ![image2-7.png](images/image2-7.png)
 
-- En el menú general de aplicaciones podremos ver cómo FortiWeb Cloud de forma automática ha seleccionado el centro de limpieza de FortiWeb Cloud más cercano a la aplicación y en el mismo Cloud Provider. A continuación se facilita un listado con los diferentes scrubbing centers disponibles a día de hoy ([FortiWEB Cloud scrubbing centers](https://docs.fortinet.com/document/fortiweb-cloud/24.2.0/user-guide/847410/restricting-direct-traffic-allowing-fortiweb-cloud-ip-addresses))
+- En el menú general de aplicaciones podremos ver cómo FortiWeb Cloud de forma automática ha seleccionado el centro de limpieza de FortiWeb Cloud más cercano a la aplicación y en el mismo Cloud Provider. A continuación se facilita un listado con los diferentes scrubbing centers disponibles a día de hoy ([FortiWeb Cloud scrubbing centers](https://docs.fortinet.com/document/fortiweb-cloud/24.2.0/user-guide/847410/restricting-direct-traffic-allowing-fortiweb-cloud-ip-addresses))
 
 ![image2-8.png](images/image2-8.png)
 
@@ -152,7 +143,9 @@ Para facilitar el acceso seguro a la nueva aplicación a través de FortiWeb Clo
 > [!WARNING]
 > Es un entorno compartido, por favor no modifiques nada que no sea lo indicado en la guía o podrás afectar al resto de usuarios
 
-- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada, (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWeb Cloud. 
+- Una vez creada la entrada, ya puedes comprobar como la resolución de la nueva entrada, (ejemplo: fortixpert0-dvwa.hol.fortinetdemo.es), apunta al FQDN de la aplicación creada en FortiWeb Cloud.
+
+- En este punto podrás comprobar al acceder a la aplicación a través de HTTPS como FortiWeb ha desplegado el certificado requerido para securizar la comunicación con la aplicación. Inicialmente se instala un certificado propio de FortiWeb y en cuestión de minutos se podrá comprobar como se despliega el certificado de Let's Encrypt de forma automatizada
 
 > [!TIP]
 > Si no has copiado el CNAME que ha generado FortiWeb para la aplicación puedes ir al menú "NETWORK > Endpoints" y recuperarlo.
@@ -165,44 +158,51 @@ En este punto vamos a validar el correcto funcionamiento de los mecanismos de se
 
 Los ataques de inyección ocurren cuando un atacante envía ataques simples basados en texto que explotan la sintaxis del intérprete objetivo. Casi cualquier fuente de datos puede ser un vector de inyección, como variables de entorno, parámetros, servicios web externos e internos, y todo tipo de usuarios. Las fallas de inyección ocurren cuando una aplicación envía datos no confiables a un intérprete. Las fallas de inyección son muy comunes, especialmente en código heredado. A menudo se encuentran en consultas SQL, LDAP, Xpath o NoSQL; comandos del sistema operativo; analizadores XML, encabezados SMTP, argumentos de programa, etc. Las fallas de inyección son fáciles de descubrir al examinar el código, pero más difíciles de descubrir mediante pruebas. Los escáneres y los fuzzers pueden ayudar a los atacantes a encontrar fallas de inyección. La inyección puede provocar pérdida o corrupción de datos, falta de responsabilidad o denegación de acceso. La inyección a veces puede llevar a la toma completa del host. [OWASP A03_2021-Injection] (https://owasp.org/Top10/A03_2021-Injection/)
 
-Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
 > [!NOTE]
-> Si es la primera vez que accedes al portal: Username: "root" (con password en blanco) y selecciona la opción 
-> Si ya has accedido y reseteado el acceso: Username: "root" Password "password"
+> Si es la primera vez que accedes al portal: Username: "root" (con password en blanco) y selecciona la opción Create / Reset Database
+
+![image3-1-1-1-2.png](images/image3-1-1-1-2.png)
+
+> Si ya has accedido y reseteado el acceso: Username: "admin" Password "password"
 
 ### 2.2.1 SQL Injection attack (sitio desprotegido)
 
 **Deshabilita el modo bloqueo en tu aplicación dentro de FortiWeb Cloud si accedes a través de este frontal**
 
+![image3-1-1-1-3.png](images/image3-1-1-1-3.png)
+
 DVWA tiene un módulo simple utilizado para demostrar ataques de inyección SQL que espera valores de user-id como enteros (por ejemplo, 1, 2, 3). La aplicación mostrará información sobre el usuario asociado con un user-ID dado. En el siguiente ejercicio, inyectaremos comandos SQL para acceder a las contraseñas asociadas con los nombres de usuario.
 
-Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
 ![image3-1-1-1.png](images/image3-1-1-1.png)
-![image3-1-1-2.png](images/image3-1-1-2.png)
-![image3-1-1-3.png](images/image3-1-1-3.png)
 
-- Introduce el siguiente texto en el campo USER ID: `% 'or '1'='1' -- ';`
+Selecciona nivel de seguridad bajo para evitar que la propia aplicación aplique controles de seguridad sobre los comandos que vamos a ejecutar
+
+![image3-1-1-2.png](images/image3-1-1-2.png)
+
+Accede a la sección SQL Injection e introduce el siguiente texto en el campo USER ID: `% 'or '1'='1' -- ';`
 
 > [!NOTE]
 > En este escenario, estamos diciendo "mostrar todos los registros que sean falsos y todos los registros que sean verdaderos".
 > %’ - Probablemente no será igual a nada y será falso.
 > ‘1’=‘1’ - Es igual a verdadero, porque 1 siempre será igual a 1.
 
-![image3-1-1-4.png](images/image3-1-1-4.png)
+![image3-1-1-1-4.png](images/image3-1-1-1-4.png)
 
 - Introduce el siguiente texto en el campo USER ID: `'or '1'='1' union select null, user() #'`
 
-![image3-1-1-5.png](images/image3-1-1-5.png)
+![image3-1-1-1-5.png](images/image3-1-1-1-5.png)
 
 - Usa el siguiente comando para determinar el nombre de la base de datos: `%'or '1'='1' union select null, database() #'`
 
-![image3-1-1-6.png](images/image3-1-1-6.png)
+![image3-1-1-1-6.png](images/image3-1-1-1-6.png)
 
 ### 2.2.2 Injection atacks (sitio protegido)
 
-¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 3.1.1, pero activando el modo bloqueo en FortiWeb Cloud?
+¿Qué pasa si vuelves a lanzar los mismos ataques que en el punto 2.2.1, pero activando el modo bloqueo en FortiWeb Cloud?
 
 ### 2.2.3 Command Injection attack (sitio desprotegido)
 
@@ -210,7 +210,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 DVWA tiene un módulo simple utilizado para demostrar ataques de inyección de comandos que espera que un usuario introduzca una dirección IP. La aplicación luego enviará un ping a la dirección IP proporcionada. En el siguiente ejercicio, inyectaremos comandos además de la dirección IP que espera el módulo.
 
-Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
 ![image3-1-3-1.png](images/image3-1-3-1.png)
 
@@ -244,7 +244,7 @@ Los ataques XSS a menudo se dividen en tres tipos: XSS Persistente: donde la cad
 
 ### 2.2.5 XSS attack (sitio desprotegido)
 
-Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: datos de acceso `dvwa_url`
+Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos anteriores: _fortixpert#-dvwa.hol.fortinetdemo.es_
 
 - Haz clic en la pestaña de seguridad de DVWA y asegúrate de que el nivel de seguridad esté configurado en Bajo.
 - Haz clic en la pestaña XSS (Reflejado) a la izquierda para lanzar el módulo.
