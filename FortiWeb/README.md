@@ -17,7 +17,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ![image1-3.png](images/image1-3.png)
 
-- En las opciones de Login seleccionaremos la opción IAM Login y utilizaremos las credenciales que nos facilita el portal
+- En las opciones de Login seleccionaremos la opción IAM Login y utilizaremos las credenciales que nos facilita el [portal](https://workshop.fortinetdemo.es) 
 
 <p align="center"><img src="images/image1-2-2.png" width="50%" align="center"></p>
 <p align="center"><img src="images/image1-1.png" width="60%" align="center"></p>
