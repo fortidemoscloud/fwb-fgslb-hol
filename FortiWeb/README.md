@@ -192,7 +192,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 <details>
   <summary>Compruébalo ;)</summary>
- _ 127.0.0.1; cat /etc/passwd_
+ 127.0.0.1; cat /etc/passwd
 </details>
 
 
