@@ -12,17 +12,17 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 ## 1. Conexión al servicio de FortiWeb Cloud
 
 - Para acceder al servicio de FortiWeb Cloud se ha habilitado un acceso IAM donde cada usuario tendrá sus propias credenciales de acceso bajo una cuenta matriz donde se encuentra el servicio
-- El acceso a FortiWeb Cloud puede llevarse a cabo desde la siguiente URL: [FortiWEB Cloud](http://www.fortiweb-cloud.com/)
+- El acceso a FortiWeb Cloud puede llevarse a cabo desde la siguiente URL: [FortiWeb Cloud](http://www.fortiweb-cloud.com/)
 - Seleccionamos la opción Login
 
 ![image1-3.png](images/image1-3.png)
 
-- En las opciones de Login seleccionaremos la opción IAM Login y utilizaremos las credenciales que nos facilita el portal
+- En las opciones de Login seleccionaremos la opción IAM Login y utilizaremos las credenciales que nos facilita el [portal](https://workshop.fortinetdemo.es) 
 
 <p align="center"><img src="images/image1-2-2.png" width="50%" align="center"></p>
 <p align="center"><img src="images/image1-1.png" width="60%" align="center"></p>
 
-En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales
+En este primer login será necesario validar la cuenta de cada usuario para lo que se debe facilitar un token que se envía a la cuenta de correo del usuario. Para consultar dicho token se debe acceder al correo electrónico del usuario en el servidor https://mail.fortinetdemo.es con las mismas credenciales de acceso que se han facilitado en el fichero de credenciales (###usuario###@fortinetdemo.es)
 
 <p align="center"><img src="images/image1-4.png" width="50%" align="center"></p>
 
@@ -71,8 +71,8 @@ Puedes obtener la IP pública de tu aplicación DVWA en los datos de laboratorio
 
 - Completado:
   
-    * El resultado es un nuevo FQDN que genera el servicio de FortiWeb Cloud de nuestra applicación para acceder a través de FortiWEB Cloud y poder actualizar nuestros servidores DNS.
-    * Desde el nuevo FQDN fqdn podremos acceder a nuestra aplicación a través de FortiWEB Cloud.
+    * El resultado es un nuevo FQDN que genera el servicio de FortiWeb Cloud para acceder a nuestra aplicación de forma segura a través del scrubbing center correspondiente simplemente redirigiendo el tráfico a nivel DNS.
+    * Desde el nuevo FQDN podremos acceder a nuestra aplicación a través de FortiWeb Cloud.
 
 > [!TIP]
 Copiar el nuevo FQDN para utilizar en el siguiente punto donde modificaremos los registros DNS de nuestro dominio
@@ -158,11 +158,6 @@ Selecciona nivel de seguridad bajo para evitar que la propia aplicación aplique
 
 Accede a la sección SQL Injection e introduce el siguiente texto en el campo USER ID: `% 'or '1'='1' -- ';`
 
-> [!NOTE]
-_> En este escenario, estamos diciendo "mostrar todos los registros que sean falsos y todos los registros que sean verdaderos".
-> %’ - Probablemente no será igual a nada y será falso.
-> ‘1’=‘1’ - Es igual a verdadero, porque 1 siempre será igual a 1._
-
 ![image3-1-1-1-4.png](images/image3-1-1-1-4.png)
 
 - Introduce el siguiente texto en el campo User ID: `'or '1'='1' union select null, user() #'`
@@ -197,7 +192,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 <details>
   <summary>Compruébalo ;)</summary>
- _ 127.0.0.1; cat /etc/passwd_
+ 127.0.0.1; cat /etc/passwd
 </details>
 
 
@@ -231,20 +226,7 @@ Accede a tu aplicación DVWA que has dado de alta en FortiWeb Cloud en pasos ant
 
 ¿Qué pasa si vuelves a lanzar los mismos ataques pero activando el modo bloqueo en FortiWeb Cloud?
 
-> [!TIP]
-> Si has llegado a este punto del laboratorio,sin haber lanzado ningún ataque sobre tu aplicación, puedes hacerlo ahora intentando abrir estas URLs en tu navegador.
-
-URL:
-
-- SQL injection: <a href="http://fortixpert#-dvwa.hol.fortinetdemo.es/?p=1%20or%201=1">http://fortixpert#.hol.fortinetdemo.es/?p=1 or 1=1</a>
-- XSS: <a href="http://fortixpert40-dvwa.hol.fortinetdemo.es/?p=<script>Alert('HACK')<\script>">XSS</a>
-- Command Injection: http://fortixpert#.hol.fortinetdemo.es/?p=cmd.exe
-- Known Exploits: http://fortixpert#.hol.fortinetdemo.es/?wp-verify-link=test
-- Trojan: http://fortixpert#.hol.fortinetdemo.es/?act=encoder
-
-Donde _fortixpert#_ corresponde a tu 'user_id' del laboratorio.
-
-## 2.3 Observabilidad en FortiWEB
+## 2.3 Observabilidad en FortiWeb
 
 Una de las caracteristicas principales de FortiWeb Cloud, es [Threats Analytics](https://docs.fortinet.com/document/fortiweb-cloud/24.2.0/user-guide/920966/threat-analytics), que utiliza algoritmos de aprendizaje automático para identificar patrones de ataque en todos los activos de tu aplicación y los agrupa en incidentes de seguridad, asignándoles una gravedad. Ayuda a distinguir las amenazas reales de las alertas informativas y los falsos positivos, permitiéndote concentrarte en las amenazas que son importantes.
 
@@ -290,7 +272,7 @@ Cosas que debes tener en cuenta:
 - Web Application Name: `user_id`-api (Usuario FortiCloud asignado, ejemplo: _fortixpert0-api_)
 - Domain Name: `user_id`-api.hol.fortinetdemo.es (ejemplo: _fortixpert0-api.hol.fortinetdemo.es_)
 
-- Template de protección a aplicar en FortiWEB Cloud: ***api-hol-template***
+- Template de protección a aplicar en FortiWeb Cloud: ***api-hol-template***
 
 - DNS Alias: `user_id`-api (ejemplo: _fortixpert0-api_)
 

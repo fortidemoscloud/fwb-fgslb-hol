@@ -8,21 +8,25 @@ Al margen de ello podremos comprobar el valor añadido que puede aportar nuestro
 
 El formato del laboratorio consiste en 2 laboratorios diferenciados cuyos datos de acceso se pueden encontrar en la siguiente URL introduciendo el token que se habrá facilitado previamente a cada asistente por correo electrónico.
 
-https://workshop.fortinetdemo.es
+- https://workshop.fortinetdemo.es
+
+Una vez dentro del portal para conocer el detalle del entorno de cada usuario se debe consultar el fichero Credenciales_Acceso.xlsx disponible en este enlace y cuya contraseña es la misma que el token facilitado por correo electrónico:
+
+- [Credenciales de acceso](https://drive.google.com/file/d/1mDOx0rxCCXkXzKrHJvAoF-t-Smxg2f-2/view?usp=sharing)
 
 ## Indice de laboratorios a completar
 
-* FortiWeb: protección WEB y protección avanzada de APIs
-* FortiDAST: comprobaremos de forma dinámica la seguridad de nuestras aplicaciones web
+* [FortiWeb](./FortiWeb): protección WEB y protección avanzada de APIs
+* [FortiDAST](./FortiDAST): análisis de vulnerabilidades de las aplicaciones
 
 ## Diagrama general de los laboratorios
 
 A continuación se recoge el diagrama general de los laboratorios disponibles para cada usuario:
 
-![architecture overview](images/image0.png)
-
 - Cada usuario dispone de dos aplicaciones desplegadas en AWS publicadas a través de un FortiGate
-- Dicho FortiGate dispone de una VIP para publicar dichas aplicaciones en los puertos 31.000 y 31.001
+- Dicho FortiGate dispone de una VIP para publicar dichas aplicaciones en los puertos 31000 y 31001
+
+<p align="center"><img src="images/image0.png" width="70%" align="center"></p>
 
 ## [FortiWeb](./FortiWeb)
 
@@ -41,7 +45,7 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 - Integración de FortiWeb Cloud con el servicio de análisis de vulnerabilidades de FortiDAST
 - Lanzamiento de escaneo sobre las aplicaciones desplegadas para identificar potenciales riesgos de las aplicaciones
-- Análisis de los resultados de los análisis
+- Análisis de los resultados de los escaneos
 
 # Support
 This a personal repository with goal of testing and demo Fortinet solutions on the Cloud. No support is provided and must be used by your own responsability. Cloud Providers will charge for this deployments, please take it in count before proceed.
