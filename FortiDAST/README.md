@@ -42,6 +42,10 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ![img1-10.png](images/img1-10.png)
 
+> [!TIP]
+
+El escaneo llevará unos minutos puedes aprovechar ese momento para ir familiarizándote con el entorno de FortiDAST o de otras funcionalidades de FortiWeb Cloud
+
 - Si accedemos a _Scan Results_ podemos ir viendo la evolución del análisis tanto a nivel general (_Summary_) como para cada una de las URIs a analizar (_Vulnerabilities_)
 
 ![img1-11.png](images/img1-11.png)
