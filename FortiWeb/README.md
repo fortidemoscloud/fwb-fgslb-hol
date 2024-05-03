@@ -428,7 +428,7 @@ We will now use some sample Zero Day Attacks.
 - Cross Site Script in the Body
 
 ```sh
-curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "javascript:qxss(X160135492Y1_1Z);", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "available”}'
+curl -v -X 'POST' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "javascript:qxss(X160135492Y1_1Z);", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "available”}
 ```
 
 ## Laboratorio completado
