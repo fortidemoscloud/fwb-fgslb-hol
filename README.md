@@ -10,10 +10,6 @@ El formato del laboratorio consiste en 2 laboratorios diferenciados cuyos datos 
 
 - https://workshop.fortinetdemo.es
 
-Una vez dentro del portal para conocer el detalle del entorno de cada usuario se debe consultar el fichero Credenciales_Acceso.xlsx disponible en este enlace y cuya contraseña es la misma que el token facilitado por correo electrónico:
-
-- [Credenciales de acceso](https://drive.google.com/file/d/1mDOx0rxCCXkXzKrHJvAoF-t-Smxg2f-2/view?usp=sharing)
-
 ## Indice de laboratorios a completar
 
 * [FortiWeb](./FortiWeb): protección WEB y protección avanzada de APIs
