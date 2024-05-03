@@ -26,46 +26,18 @@ En este laboratorio llevaremos a cabo las siguientes tareas:
 
 ![img1-3.png](images/img1-3.png)
 
-- En FortiDAST nos aparecerá pre-configurado el análisis para lanzarle a la aplicación donde simplemente tendremos que seleccionar Ok y apuntar el UUID facilitado
+- En FortiDAST nos aparecerá pre-configurado el análisis para lanzarle a la aplicación donde simplemente tendremos que seleccionar Ok
  
 ![img1-5.png](images/img1-5.png)
 
-- En el caso de que la aplicación no aparezca como autorizada tras darla de alta necesitaremos crear una entrada en nuestro servidor DNS (FortiGSLB) para validar el activo a analizar
+## 2. Lanzamiento de escaneo
 
-![img1-7.png](images/img1-7.png)
-  
-- Para ello accedemos a [FortiGSLB](http://www.fortigslb.com/)
-- Seleccionamos la organización HoL
-
-<p align="center"><img src="images/image2-9.png" width="80%"></p>
-
-- Seleccionamos "DNS Services" en el menú de la izquierda, donde aparecen las zonas DNS relacionadas con esta organización.
-
-<p align="center"><img src="images/image2-10.png" width="50%"></p>
-
-- Seleccionamos la entrada "HoL" y editala para añadir una nueva entrada, bóton lapiz que encontrarás a la derecha. 
-
-![image2-11.png](images/image2-11.png)
-
-- En la parte inferior de la entrada, tras los parámetros de definición de la misma, encontrarás el menú para crear un nuevo registro de tipo TXT. 
-
-![img1-6.png](images/img1-6.png)
-
-- La entrada TXT corresponde al UUID que nos ofrece FortiDAST cuando damos de alta el escaneo:
-
-![img1-15.png](images/img1-15.png)
-
-> [!WARNING]
-> Es un entorno compartido, por favor no modifiques nada que no sea lo indicado en la guía o podrás afectar al resto de usuarios
-
-## 2. Lanzamiento de escáner
-
-- Una vez autorizada la aplicación en FortiWeb Cloud ya tendremos la opción de lanzar el escáner
+- Una vez autorizada la aplicación en FortiWeb Cloud ya tendremos la opción de lanzar el escaneo
 
 ![img1-4.png](images/img1-4.png)
 
-- Si todo ha ido bien en FortiDAST veremos como el escáner cambia de estado pasando a _In Progress_
-- Podremos acceder al escáner e ir viendo su evolución desde la opción _View_
+- Si todo ha ido bien en FortiDAST veremos como el escaneo cambia de estado pasando a _In Progress_
+- Podremos acceder al escaneo e ir viendo su evolución desde la opción _View_
 - FortiDAST analizará el número de URLs y tecnologías empleadas en la aplicación para ajustar automáticamente los análisis
 
 ![img1-10.png](images/img1-10.png)
