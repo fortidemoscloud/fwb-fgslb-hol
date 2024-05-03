@@ -371,6 +371,10 @@ Por defecto, el esquema aprendido deja la protección en standby, de forma que l
 
 ![img-3-2-5.png](images/img-3-2-5.png)
 
+- Para confirmar que el número de muestras recibidas es suficiente debemos comprobar el estado de las diferentes áreas de nuestra API
+
+![img1-21.png](images/img1-21.png)
+
 ## 3.2.4 Ataques sobre la API
 
 En este apartado vamos a comprobar, como de forma automática, FortiWeb Cloud puede proteger las llamadas a la API, en función a lo aprendido en los patrones de tráfico y al esquema Swagger que ha definido. 
