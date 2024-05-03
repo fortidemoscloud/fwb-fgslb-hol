@@ -383,7 +383,7 @@ En el punto 3.2.3, se ha modificado el comportamiento de protección frente a ll
 
 ### 3.2.4.1 Query Parameter Violation
 
-    "status" JSON parameter is missing in the JSON request and is blocked by FortiWeb-Cloud. The expected result is a Request query validation failed status.
+- "status" JSON parameter is missing in the JSON request and is blocked by FortiWeb-Cloud. The expected result is a Request query validation failed status.
 
 ```sh
 curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?' -H 'Accept: application/json' -H 'Content-Type: application/json'
@@ -391,7 +391,7 @@ curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStat
 
 ### 3.2.4.2 URL Query Parameter Long
 
-    "status" URL query parameter is too long. The expected result, JSON parameter length violation.
+- "status" URL query parameter is too long. The expected result, JSON parameter length violation.
 
 ```sh
 curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=ABCDEFGHIJKL' -H 'Accept: application/json' -H 'Content-Type: application/json'
@@ -399,7 +399,7 @@ curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStat
 
 ### 3.2.4.3 URL Query Parameter Short
 
-    "status" URL query parameter is too short. The expected result is a parameter violation.
+- "status" URL query parameter is too short. The expected result is a parameter violation.
 
 ```sh
 curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=A' -H 'Accept: application/json' -H 'Content-Type: application/json'
@@ -407,7 +407,7 @@ curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStat
 
 ### 3.2.4.4 Cross Site Script in URL
 
-    "status" URL query parameter will carry a Command Injection attack. The expected result is a known signature violation.
+- "status" URL query parameter will carry a Command Injection attack. The expected result is a known signature violation.
     
 ```sh
 curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStatus?status=<script>alert(123)</script>'  -H 'Accept: application/json' -H 'Content-Type: application/json'
@@ -415,7 +415,7 @@ curl -v -X 'GET' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet/findByStat
 
 ### 3.2.4.5 Cross Site Script in Body
 
-    "status" JSON body will carry an XSS attack. The expected result, the attack is being blocked by Machine Learning.
+- "status" JSON body will carry an XSS attack. The expected result, the attack is being blocked by Machine Learning.
 
 ```sh
 curl -v -X 'POST' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "FortiCamel", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "<script>alert(123)</script>"}'
@@ -423,9 +423,9 @@ curl -v -X 'POST' 'https://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'acce
 
 ### 3.2.4.6 Zero Day Attacks
 
-    We will now use some sample Zero Day Attacks.
+We will now use some sample Zero Day Attacks.
 
-    Cross Site Script in the Body
+- Cross Site Script in the Body
 
 ```sh
 curl -v -X 'POST' 'http://fortixpert0-api.hol.fortinetdemo.es/api/pet' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"id": 111, "category": {"id": 111, "name": "Camel"}, "name": "javascript:qxss(X160135492Y1_1Z);", "photoUrls": ["WillUpdateLater"], "tags": [ {"id": 111, "name": "FortiCamel"}], "status": "available”}'
