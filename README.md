@@ -8,12 +8,13 @@ Al margen de ello podremos comprobar el valor añadido que puede aportar nuestro
 
 El formato del laboratorio consiste en 2 laboratorios diferenciados cuyos datos de acceso se pueden encontrar en la siguiente URL introduciendo el token que se habrá facilitado previamente a cada asistente por correo electrónico.
 
-- https://workshop.fortinetdemo.es
+- https://workshop.fortidemoscloud.com
 
 ## Indice de laboratorios a completar
 
 * [FortiWeb](./FortiWeb): protección WEB y protección avanzada de APIs
 * [FortiDAST](./FortiDAST): análisis de vulnerabilidades de las aplicaciones
+* [FortiGSLB](./FortiGLSB): balanceo global de aplicaciones
 
 ## Diagrama general de los laboratorios
 
