@@ -14,7 +14,7 @@ El formato del laboratorio consiste en 2 laboratorios diferenciados cuyos datos 
 
 * [FortiWeb](./FortiWeb): protección WEB y protección avanzada de APIs
 * [FortiDAST](./FortiDAST): análisis de vulnerabilidades de las aplicaciones
-* [FortiGSLB](./FortiGLSB): balanceo global de aplicaciones
+* [FortiGSLB](./FortiGLSB): balanceo global de aplicaciones (opcional)
 
 ## Diagrama general de los laboratorios
 
